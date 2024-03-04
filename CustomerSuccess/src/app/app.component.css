@@ -1,0 +1,13 @@
+.content {
+  display: flex; /* Use flexbox */
+  height: 100%;
+}
+
+.sidebar {
+  width: 20%; /* Set sidebar width */
+  background-color: aqua;
+}
+
+.dashboard {
+  flex: 1; /* Make the dashboard flex to fill remaining space */
+}

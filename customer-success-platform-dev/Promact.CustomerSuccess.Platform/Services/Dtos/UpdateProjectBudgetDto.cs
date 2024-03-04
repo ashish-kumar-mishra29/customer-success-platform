@@ -7,7 +7,7 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
     public class UpdateProjectBudgetDto
     {
         [Required]
-        [StringLength(128)]
+        
         public ProjectType Type { get; set; }
         public required int? DurationInMonths { get; set; }
         public required int? BudgetedHours { get; set; }

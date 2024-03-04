@@ -7,7 +7,7 @@ using Volo.Abp.Domain.Repositories;
 namespace Promact.CustomerSuccess.Platform.Services
 {
     public class VersionHistoryService : CrudAppService<
-        VersionHistory, VersionHistoryDto, Guid, PagedAndSortedResultRequestDto, CreateVersionHistoryDto, UpdateVersionHistoryDto>
+        VersionHistory, VersionHistoryDto, Guid, PagedAndSortedResultRequestDto, CreateVersionHistoryDto, UpdateVersionHistoryDto>,IProjectService
     {
         public VersionHistoryService(IRepository<VersionHistory, Guid> repository) : base(repository)
         {

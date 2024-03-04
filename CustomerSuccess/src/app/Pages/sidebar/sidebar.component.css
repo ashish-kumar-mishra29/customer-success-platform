@@ -1,0 +1,17 @@
+.sidenav-container {
+  height: 100%;
+  margin-top: 20px;
+}
+.sidebar-button {
+  width: 75%;
+  text-align: left;
+  padding: 18px;
+  font-size: 16px;
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+.btn1 {
+  margin-left: 10px;
+  font-size: 16px;
+  background-color: blue;
+}

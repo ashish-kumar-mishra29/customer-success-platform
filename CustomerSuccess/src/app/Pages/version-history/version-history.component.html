@@ -1,1 +1,74 @@
-<p>version-history works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Project Id</label>
+    <input type="text" [(ngModel)]="formData.id" name="id" required />
+  </div>
+  <div>
+    <label>Verison</label>
+    <input type="text" [(ngModel)]="formData.version" name="version" required />
+  </div>
+  <div>
+    <label>Type</label>
+    <input type="text" [(ngModel)]="formData.type" name="type" required />
+  </div>
+  <div>
+    <label>Change:</label>
+    <input type="text" [(ngModel)]="formData.change" name="change" required />
+  </div>
+  <div>
+    <label>Change Reason:</label>
+    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
+  </div>
+  <div>
+    <label>Created By:</label>
+    <input type="text" [(ngModel)]="formData.createdBy" name="createdBy" required />
+  </div>
+  <div>
+    <label>Revision Date:</label>
+    <input type="text" [(ngModel)]="formData.revisionDate" name="revisionDate" required />
+  </div>
+  <div>
+    <label>Approval Date:</label>
+    <input type="text" [(ngModel)]="formData.approvalDate" name="approvalDate" required />
+  </div>
+  <div>
+    <label>Approved By:</label>
+    <input type="text" [(ngModel)]="formData.approvedBy" name="approvedBy" required />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>version</th>
+      <th>type</th>
+      <th>change</th>
+      <th>changeReason</th>
+      <th>createdBy</th>
+      <th>revisionDate</th>
+      <th>approvalDate</th>
+      <th>approvedBy</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.version }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.change }}</td>
+      <td>{{ item.changeReason }}</td>
+      <td>{{ item.createdBy }}</td>
+      <td>{{ item.revisionDate }}</td>
+      <td>{{ item.approvalDate }}</td>
+      <td>{{ item.approvedBy }}</td>
+      
+      <td>
+        <button (click)="delete(item.id)">
+          <i class="material-icons">delete</i></button
+        ><button><i class="material-icons">edit</i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

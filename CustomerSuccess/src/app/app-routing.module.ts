@@ -7,15 +7,17 @@ import { PhaseComponent } from './Pages/phase/phase.component';
 import { ProjectBudgetComponent } from './Pages/project-budget/project-budget.component';
 import { RiskProfilingComponent } from './Pages/risk-profiling/risk-profiling.component';
 import { StakeholdersComponent } from './Pages/stakeholders/stakeholders.component';
+import { VersionHistoryComponent } from './Pages/version-history/version-history.component';
 
 const routes: Routes = [
   {path: '', component:NavbarComponent},
-  {path: '/audit', component:AuditHistoryComponent},
-  {path:'/escalation', component:EscalationMatrixComponent},
-  {path:'/phase', component:PhaseComponent},
-  {path:'/budget', component:ProjectBudgetComponent},
-  {path:'/risk', component:RiskProfilingComponent},
-  {path:'/stakeholder', component:StakeholdersComponent}
+  {path:'version', component:VersionHistoryComponent},
+  {path: 'audit', component:AuditHistoryComponent},
+  {path:'escalation', component:EscalationMatrixComponent},
+  {path:'phase', component:PhaseComponent},
+  {path:'budget', component:ProjectBudgetComponent},
+  {path:'risk', component:RiskProfilingComponent},
+  {path:'stakeholder', component:StakeholdersComponent}
 ];
 
 @NgModule({

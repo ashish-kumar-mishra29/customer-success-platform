@@ -1,1 +1,89 @@
-<p>audit-history works!</p>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Audit Date:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.auditDate"
+      name="auditDate"
+      required
+    />
+  </div>
+  <div>
+    <label>Type</label>
+    <input type="text" [(ngModel)]="formData.type" name="type" required />
+  </div>
+  <div>
+    <label>Change:</label>
+    <input type="text" [(ngModel)]="formData.change" name="change" required />
+  </div>
+  <div>
+    <label>Change Reason:</label>
+    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
+  </div>
+  <div>
+    <label>Created By:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.createdBy"
+      name="createdBy"
+      required
+    />
+  </div>
+  <div>
+    <label>Revision Date:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.revisionDate"
+      name="revisionDate"
+      required
+    />
+  </div>
+  <div>
+    <label>Approval Date:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.approvalDate"
+      name="approvalDate"
+      required
+    />
+  </div>
+  <div>
+    <label>Approved By:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.approvedBy"
+      name="approvedBy"
+      required
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Audit Date</th>
+      <th>Review By</th>
+      <th>Status</th>
+      <th>Review Section</th>
+      <th>Comment</th>
+      <th>Action Item</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.audit }}</td>
+      <td>{{ item.reviewedBy }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.reviewedSection }}</td>
+      <td>{{ item.comment }}</td>
+      <td>{{ item.actionItem }}</td>
+      <td>
+        <button (click)="delete(item.id)">
+          <i class="material-icons">delete</i></button
+        ><button><i class="material-icons">edit</i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

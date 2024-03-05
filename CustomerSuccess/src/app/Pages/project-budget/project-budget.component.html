@@ -1,1 +1,42 @@
-<p>project-budget works!</p>
+<form (ngSubmit)="onSubmit()">
+    <div>
+      <label>Project Id</label>
+      <input type="text" [(ngModel)]="formData.id" name="id" required>
+    </div>
+    <div>
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="formData.name" name="name" required>
+    </div>
+    <div>
+      <label>Budget:</label>
+      <input type="number" [(ngModel)]="formData.budget" name="budget" required>
+    </div>
+    <div>
+      <label>Time:</label>
+      <input type="number" [(ngModel)]="formData.time" name="time" required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Project Type</th>
+      <th>Duration (In Months)</th>
+      <th>Budget Hours</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.type }}</td>
+      <td>{{ item.durationInMonths }}</td>
+      <td>{{ item.budgetedHours }}</td>
+      <td>
+        <button (click)="delete(item.id)"><i class="material-icons">delete</i></button><button><i class="material-icons">edit</i></button> 
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -116,6 +116,14 @@ namespace Promact.CustomerSuccess.Platform;
             );
         });
 
+        context.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowOrigin",
+                builder => builder.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader());
+        });
+
         PreConfigure<OpenIddictBuilder>(builder =>
         {
             builder.AddValidation(options =>
@@ -349,6 +357,7 @@ namespace Promact.CustomerSuccess.Platform;
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
+            app.UseCors("AllowOrigin");
         }
 
         app.UseAbpRequestLocalization();
@@ -356,6 +365,7 @@ namespace Promact.CustomerSuccess.Platform;
         if (!env.IsDevelopment())
         {
             app.UseErrorPage();
+            
         }
 
         app.UseCorrelationId();

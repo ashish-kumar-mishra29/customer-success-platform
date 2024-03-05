@@ -5,7 +5,6 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
     public class UpdateVersionHistoryDto
     {
         [Required]
-        [StringLength(100)]
         public int Version { get; set; }
         public required string Type { get; set; }
         public required string Change { get; set; }

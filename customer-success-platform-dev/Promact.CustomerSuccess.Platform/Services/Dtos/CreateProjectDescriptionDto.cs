@@ -7,7 +7,6 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
     public class CreateProjectDescriptionDto
     {
         [Required]
-        [StringLength(128)]
         public required string Name { get; set; }
         public required string Description { get; set; }
        

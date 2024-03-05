@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SidebarComponent } from './Pages/sidebar/sidebar.component';
-
+import { ProjectService } from './services/project.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,7 @@ import { SidebarComponent } from './Pages/sidebar/sidebar.component';
     PhaseComponent,
     SprintWiseDetailComponent,
     SidebarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -43,8 +46,11 @@ import { SidebarComponent } from './Pages/sidebar/sidebar.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
+    FormsModule
+    
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(),ProjectService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

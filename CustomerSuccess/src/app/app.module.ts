@@ -22,6 +22,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { SidebarComponent } from './Pages/sidebar/sidebar.component';
 import { ProjectService } from './services/project.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectDescriptionComponent } from './Pages/project-description/project-description.component';
+import { ProjectScopeComponent } from './Pages/project-scope/project-scope.component';
+import { ProjectStackComponent } from './Pages/project-stack/project-stack.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     PhaseComponent,
     SprintWiseDetailComponent,
     SidebarComponent,
+    ProjectDescriptionComponent,
+    ProjectScopeComponent,
+    ProjectStackComponent,
     
   ],
   imports: [

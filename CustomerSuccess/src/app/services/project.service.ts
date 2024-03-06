@@ -12,6 +12,7 @@ export class ProjectService {
   }
 
   createBudget(data:any) {
+    console.log(data)
     return this.http.post(this.baseUrl + 'app/project-budget', data
     );
   }

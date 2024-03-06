@@ -8,6 +8,9 @@ import { ProjectBudgetComponent } from './Pages/project-budget/project-budget.co
 import { RiskProfilingComponent } from './Pages/risk-profiling/risk-profiling.component';
 import { StakeholdersComponent } from './Pages/stakeholders/stakeholders.component';
 import { VersionHistoryComponent } from './Pages/version-history/version-history.component';
+import { ProjectDescriptionComponent } from './Pages/project-description/project-description.component';
+import { ProjectScopeComponent } from './Pages/project-scope/project-scope.component';
+import { ProjectStackComponent } from './Pages/project-stack/project-stack.component';
 
 const routes: Routes = [
   {path: '', component:NavbarComponent},
@@ -17,7 +20,11 @@ const routes: Routes = [
   {path:'phase', component:PhaseComponent},
   {path:'budget', component:ProjectBudgetComponent},
   {path:'risk', component:RiskProfilingComponent},
-  {path:'stakeholder', component:StakeholdersComponent}
+  {path:'stakeholder', component:StakeholdersComponent},
+  {path:'description',component:ProjectDescriptionComponent},
+  {path:'scope',component:ProjectScopeComponent},
+  {path:'stack',component:ProjectStackComponent}
+  
 ];
 
 @NgModule({

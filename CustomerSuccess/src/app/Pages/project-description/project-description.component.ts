@@ -1,14 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { VersionService } from '../../services/version.service';
+import { ProjectDescriptionService } from '../../services/project-description.service';
 import jsPDF from 'jspdf';
 
 @Component({
-  selector: 'app-version-history',
-  templateUrl: './version-history.component.html',
-  styleUrl: './version-history.component.css',
+  selector: 'app-project-description',
+  templateUrl: './project-description.component.html',
+  styleUrl: './project-description.component.css',
 })
-export class VersionHistoryComponent {
-
+export class ProjectDescriptionComponent {
   @ViewChild('content', { static: false }) content!: ElementRef;
 
   makePdf() {
@@ -16,15 +15,15 @@ export class VersionHistoryComponent {
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save('VersionHistory.pdf');
+        pdf.save('Description.pdf');
       },
     });
   }
-  
+
   projects: [] | any;
-  constructor(private version: VersionService) {}
+  constructor(private description: ProjectDescriptionService) {}
   formData: any = {
-    version:'',
+    version: '',
     type: '',
     change: '',
     changeReason: '',
@@ -34,21 +33,21 @@ export class VersionHistoryComponent {
     approvedBy: '',
   };
   ngOnInit(): void {
-    this.version.getVersion().subscribe((response: any) => {
+    this.description.getDescription().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
     });
   }
 
   delete(id: string) {
-    this.version.deleteVersion(id).subscribe((response: any) => {
+    this.description.deleteDescription(id).subscribe((response: any) => {
       null;
     });
   }
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.version
-      .createVersion(this.formData)
+    this.description
+      .createDescription(this.formData)
       .subscribe((response: any) => {
         console.log(response);
       });

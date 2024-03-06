@@ -2,6 +2,7 @@
 using Promact.CustomerSuccess.Platform.Services.Dtos;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 
 namespace Promact.CustomerSuccess.Platform.Services
@@ -10,8 +11,9 @@ namespace Promact.CustomerSuccess.Platform.Services
         AuditHistory, AuditHistoryDto, Guid,
             PagedAndSortedResultRequestDto,
             CreateAuditHistoryDto,
-            UpdateAuditHistoryDto>
+            UpdateAuditHistoryDto> ,ITransientDependency
     {
+
         public AuditHistoryService(IRepository<AuditHistory, Guid> repository) : base(repository)
         {
         }

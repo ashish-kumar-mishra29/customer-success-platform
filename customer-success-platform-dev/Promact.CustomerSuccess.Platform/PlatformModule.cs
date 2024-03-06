@@ -48,6 +48,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.MailKit;
 
 namespace Promact.CustomerSuccess.Platform;
 
@@ -99,6 +100,7 @@ namespace Promact.CustomerSuccess.Platform;
     typeof(AbpSettingManagementHttpApiModule)
 )]
 [DependsOn(typeof(AbpEmailingModule))]
+    [DependsOn(typeof(AbpMailKitModule))]
     public class PlatformModule : AbpModule
 {
     /* Single point to enable/disable multi-tenancy */

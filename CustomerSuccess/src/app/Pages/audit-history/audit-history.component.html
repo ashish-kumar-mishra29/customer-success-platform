@@ -1,89 +1,80 @@
+<button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()">
   <div>
     <label>Audit Date:</label>
+    <input type="text" [(ngModel)]="formData.audit" name="auditDate" required />
+  </div>
+
+  <div>
+    <label>Review By:</label>
     <input
       type="text"
-      [(ngModel)]="formData.auditDate"
-      name="auditDate"
-      required
-    />
-  </div>
-  <div>
-    <label>Type</label>
-    <input type="text" [(ngModel)]="formData.type" name="type" required />
-  </div>
-  <div>
-    <label>Change:</label>
-    <input type="text" [(ngModel)]="formData.change" name="change" required />
-  </div>
-  <div>
-    <label>Change Reason:</label>
-    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
-  </div>
-  <div>
-    <label>Created By:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.createdBy"
+      [(ngModel)]="formData.reviewedBy"
       name="createdBy"
       required
     />
   </div>
   <div>
-    <label>Revision Date:</label>
+    <label>Status :</label>
+    <input type="text" [(ngModel)]="formData.status" name="status" required />
+  </div>
+  <div>
+    <label>Review section</label>
     <input
       type="text"
-      [(ngModel)]="formData.revisionDate"
-      name="revisionDate"
+      [(ngModel)]="formData.reviewedSection"
+      name="review"
       required
     />
   </div>
   <div>
-    <label>Approval Date:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.approvalDate"
-      name="approvalDate"
-      required
-    />
+    <label>Comment:</label>
+    <input type="text" [(ngModel)]="formData.comment" name="comment" required />
   </div>
   <div>
-    <label>Approved By:</label>
+    <label>Action Item:</label>
     <input
       type="text"
-      [(ngModel)]="formData.approvedBy"
-      name="approvedBy"
+      [(ngModel)]="formData.actionItem"
+      name="action"
       required
     />
   </div>
   <button type="submit">Submit</button>
 </form>
+<div >
+  <table id="content" #content>
+    <div>
+      
+    </div>
+    <thead>
+      <tr>
+        <th>Audit Date</th>
+        <th>Review By</th>
+        <th>Status</th>
+        <th>Review Section</th>
+        <th>Comment</th>
+        <th>Action Item</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects; let i = index">
+        <td>{{ item.audit }}</td>
+        <td>{{ item.reviewedBy }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.reviewedSection }}</td>
+        <td>{{ item.comment }}</td>
+        <td>{{ item.actionItem }}</td>
+        <td>
+          <button (click)="delete(item.id)">
+            <i class="material-icons">delete</i></button
+          ><button (click)="edit(item)">
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Audit Date</th>
-      <th>Review By</th>
-      <th>Status</th>
-      <th>Review Section</th>
-      <th>Comment</th>
-      <th>Action Item</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of projects; let i = index">
-      <td>{{ item.audit }}</td>
-      <td>{{ item.reviewedBy }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.reviewedSection }}</td>
-      <td>{{ item.comment }}</td>
-      <td>{{ item.actionItem }}</td>
-      <td>
-        <button (click)="delete(item.id)">
-          <i class="material-icons">delete</i></button
-        ><button><i class="material-icons">edit</i></button>
-      </td>
-    </tr>
-  </tbody>
-</table>

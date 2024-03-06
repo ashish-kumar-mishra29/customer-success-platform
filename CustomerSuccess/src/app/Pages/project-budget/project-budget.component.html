@@ -1,41 +1,59 @@
-<form (ngSubmit)="onSubmit()">
-    <div>
-      <label>Project Id</label>
-      <input type="text" [(ngModel)]="formData.id" name="id" required>
-    </div>
-    <div>
-      <label>Name:</label>
-      <input type="text" [(ngModel)]="formData.name" name="name" required>
-    </div>
-    <div>
-      <label>Budget:</label>
-      <input type="number" [(ngModel)]="formData.budget" name="budget" required>
-    </div>
-    <div>
-      <label>Time:</label>
-      <input type="number" [(ngModel)]="formData.time" name="time" required>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
+<button id="download-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label>ID:</label>
+    <input type="text" [(ngModel)]="formData.projectId" name="id" required />
+  </div>
+  <div class="form-group">
+    <label>Type:</label>
+    <input type="number" [(ngModel)]="formData.type" name="type" required />
+  </div>
+  <div class="form-group">
+    <label>Duration In Months:</label>
+    <input type="number" [(ngModel)]="formData.durationInMonths" name="budget" required />
+  </div>
+  <div class="form-group">
+    <label>Budgeted Hours:</label>
+    <input type="number" [(ngModel)]="formData.budgetedHours" name="time" required />
+  </div>
+  <div class="form-group">
+    <label>Budgeted cost:</label>
+    <input type="number" [(ngModel)]="formData.budgetedCost" name="cost" required />
+  </div>
+  <div class="form-group">
+    <label> Currency:</label>
+    <input type="text" [(ngModel)]="formData.currency" name="currency" required />
+  </div>
+  <button type="submit" class="submit-button">Submit</button>
+</form>
 
-
-
-<table>
+<table class="table-container" #content>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Project Type</th>
       <th>Duration (In Months)</th>
       <th>Budget Hours</th>
+      <th>Budgeted Cost</th>
+      <th>Currency</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
+      <td>{{item.projectId}}</td>
       <td>{{ item.type }}</td>
       <td>{{ item.durationInMonths }}</td>
       <td>{{ item.budgetedHours }}</td>
+      <td>{{item.budgetedCost}}</td>
+      <td>{{item.currency}}</td>
       <td>
-        <button (click)="delete(item.id)"><i class="material-icons">delete</i></button><button><i class="material-icons">edit</i></button> 
+        <button (click)="delete(item.id)" class="action-button">
+          <i class="material-icons">delete</i>
+        </button>
+        <button class="action-button">
+          <i class="material-icons">edit</i>
+        </button>
       </td>
     </tr>
   </tbody>

@@ -1,1 +1,73 @@
-<p>risk-profiling works!</p>
+
+<button id="download-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label>Version</label>
+    <input type="text" [(ngModel)]="formData.version" name="version" required />
+  </div>
+  <div class="form-group">
+    <label>Type</label>
+    <input type="text" [(ngModel)]="formData.type" name="type" required />
+  </div>
+  <div class="form-group">
+    <label>Change:</label>
+    <input type="text" [(ngModel)]="formData.change" name="change" required />
+  </div>
+  <div class="form-group">
+    <label>Change Reason:</label>
+    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
+  </div>
+  <div class="form-group">
+    <label>Created By:</label>
+    <input type="text" [(ngModel)]="formData.createdBy" name="createdBy" required />
+  </div>
+  <div class="form-group">
+    <label>Revision Date:</label>
+    <input type="text" [(ngModel)]="formData.revisionDate" name="revisionDate" required />
+  </div>
+  <div class="form-group">
+    <label>Approval Date:</label>
+    <input type="text" [(ngModel)]="formData.approvalDate" name="approvalDate" required />
+  </div>
+  <div class="form-group">
+    <label>Approved By:</label>
+    <input type="text" [(ngModel)]="formData.approvedBy" name="approvedBy" required />
+  </div>
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<table class="table-container" #content>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Type</th>
+      <th>Change</th>
+      <th>Change Reason</th>
+      <th>Created By</th>
+      <th>Revision Date</th>
+      <th>Approval Date</th>
+      <th>Approved By</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.version }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.change }}</td>
+      <td>{{ item.changeReason }}</td>
+      <td>{{ item.createdBy }}</td>
+      <td>{{ item.revisionDate }}</td>
+      <td>{{ item.approvalDate }}</td>
+      <td>{{ item.approvedBy }}</td>
+      <td>
+        <button (click)="delete(item.id)" class="action-button">
+          <i class="material-icons">delete</i>
+        </button>
+        <button class="action-button">
+          <i class="material-icons">edit</i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

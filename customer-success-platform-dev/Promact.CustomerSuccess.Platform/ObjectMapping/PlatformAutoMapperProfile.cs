@@ -40,6 +40,8 @@ public class PlatformAutoMapperProfile : Profile
         CreateMap<CreateSprintDto, Sprint>();
         CreateMap<UpdateSprintDto, Sprint>();
         CreateMap<Sprint, SprintDto>().ReverseMap();
+        //8th Mapping
+       
 
 
 

@@ -6,17 +6,17 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Promact.CustomerSuccess.Platform.Services
 {
-    public class ProjectBudgetService : CrudAppService
-        <ProjectBudget, 
-        ProjectBudgetDto, 
+    public class PhaseMilestoneService : CrudAppService<
+        PhaseMilestone,
+        PhaseMilestoneDto,
         Guid,
-            
         PagedAndSortedResultRequestDto,
-        UpdateProjectBudgetDto,
-        CreateProjectBudgetDto>,
-        IProjectService
+
+        CreatePhaseMilestoneDto,
+        UpdatePhaseMilestoneDto
+        >,IProjectService
     {
-        public ProjectBudgetService(IRepository<ProjectBudget, Guid> repository) : base(repository)
+        public PhaseMilestoneService(IRepository<PhaseMilestone, Guid> repository) : base(repository)
         {
         }
     }

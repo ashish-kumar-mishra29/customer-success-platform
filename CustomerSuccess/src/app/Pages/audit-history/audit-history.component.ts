@@ -5,10 +5,23 @@ import jsPDF from 'jspdf';
 @Component({
   selector: 'app-audit-history',
   templateUrl: './audit-history.component.html',
-  styleUrl: './audit-history.component.css',
+  styleUrls: ['./audit-history.component.css'], // Use styleUrls instead of styleUrl
 })
 export class AuditHistoryComponent {
   @ViewChild('content', { static: false }) content!: ElementRef;
+
+  constructor(private audit: AuditService) {}
+
+  ngOnInit(): void {
+    this.loadAuditRecords(); // Load audit records initially
+  }
+
+  loadAuditRecords() {
+    this.audit.getAudit().subscribe((response: any) => {
+      this.projects = response.items;
+      console.log(this.projects);
+    });
+  }
 
   makePdf() {
     const pdf = new jsPDF('p', 'pt', 'a3');
@@ -21,7 +34,6 @@ export class AuditHistoryComponent {
   }
 
   projects: [] | any;
-  constructor(private audit: AuditService) {}
   formData: any = {
     audit: '',
     reviewedBy: '',
@@ -30,16 +42,11 @@ export class AuditHistoryComponent {
     comment: '',
     actionItem: '',
   };
-  ngOnInit(): void {
-    this.audit.getAudit().subscribe((response: any) => {
-      this.projects = response.items;
-      console.log(this.projects);
-    });
-  }
 
   delete(id: string) {
-    this.audit.deleteAudit(id).subscribe((response: any) => {
-      null;
+    this.audit.deleteAudit(id).subscribe(() => {
+      console.log('Audit record deleted successfully');
+      this.loadAuditRecords(); // Reload audit records after successful deletion
     });
   }
 
@@ -47,7 +54,7 @@ export class AuditHistoryComponent {
     this.audit.updateAudit(id, this.formData).subscribe(
       () => {
         console.log('Audit record updated successfully');
-        // Optionally, perform any additional actions after successful update
+        this.loadAuditRecords(); // Reload audit records after successful update
       },
       (error) => {
         console.error('Error updating audit record:', error);
@@ -55,8 +62,12 @@ export class AuditHistoryComponent {
       }
     );
   }
+
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.audit.createAudit(this.formData).subscribe();
+    this.audit.createAudit(this.formData).subscribe(() => {
+      console.log('Audit record created successfully');
+      this.loadAuditRecords(); // Reload audit records after successful creation
+    });
   }
 }

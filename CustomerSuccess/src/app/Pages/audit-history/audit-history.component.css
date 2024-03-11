@@ -85,3 +85,19 @@ tbody tr:hover {
 #download-btn:hover {
   background-color: #45a049;
 }
+.mat-form-field.mat-form-field-appearance-outline {
+  width: 100%;
+  margin-bottom: 20px; /* Add some space below the date field */
+  background-color: white;
+}
+
+/* Adjust the styling of the input element within mat-form-field */
+.mat-input-element {
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  width: calc(
+    100% - 38px
+  );
+}

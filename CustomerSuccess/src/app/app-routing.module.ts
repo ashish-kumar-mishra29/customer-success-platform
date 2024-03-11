@@ -11,6 +11,7 @@ import { VersionHistoryComponent } from './Pages/version-history/version-history
 import { ProjectDescriptionComponent } from './Pages/project-description/project-description.component';
 import { ProjectScopeComponent } from './Pages/project-scope/project-scope.component';
 import { ProjectStackComponent } from './Pages/project-stack/project-stack.component';
+import { ProjectComponent } from './Pages/project/project.component';
 
 const routes: Routes = [
   {path: '', component:NavbarComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:'stakeholder', component:StakeholdersComponent},
   {path:'description',component:ProjectDescriptionComponent},
   {path:'scope',component:ProjectScopeComponent},
-  {path:'stack',component:ProjectStackComponent}
+  {path:'stack',component:ProjectStackComponent},
+  {path:'project',component:ProjectComponent}
   
 ];
 

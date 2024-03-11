@@ -25,6 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectDescriptionComponent } from './Pages/project-description/project-description.component';
 import { ProjectScopeComponent } from './Pages/project-scope/project-scope.component';
 import { ProjectStackComponent } from './Pages/project-stack/project-stack.component';
+import { ApprovedTeamComponent } from './Pages/approved-team/approved-team.component';
+import { ClientFeedbackComponent } from './Pages/client-feedback/client-feedback.component';
+import { ProjectUpdatesComponent } from './Pages/project-updates/project-updates.component';
+import { ResourcesComponent } from './Pages/resources/resources.component';
+import { MOMsComponent } from './Pages/moms/moms.component';
+import { ProjectComponent } from './Pages/project/project.component';
+import { MatDatepickerModule } from '@angular/material/datepicker'; // Import MatDatepickerModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +51,12 @@ import { ProjectStackComponent } from './Pages/project-stack/project-stack.compo
     ProjectDescriptionComponent,
     ProjectScopeComponent,
     ProjectStackComponent,
+    ApprovedTeamComponent,
+    ClientFeedbackComponent,
+    ProjectUpdatesComponent,
+    ResourcesComponent,
+    MOMsComponent,
+    ProjectComponent,
     
   ],
   imports: [
@@ -53,7 +68,10 @@ import { ProjectStackComponent } from './Pages/project-stack/project-stack.compo
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    BrowserAnimationsModule,
+    MatMomentDateModule
     
   ],
   providers: [provideAnimationsAsync(),ProjectService],

@@ -2,15 +2,28 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import jsPDF from 'jspdf';
 
-
 @Component({
   selector: 'app-project-budget',
   templateUrl: './project-budget.component.html',
-  styleUrl: './project-budget.component.css',
+  styleUrls: ['./project-budget.component.css'] // Use styleUrls instead of styleUrl
 })
 export class ProjectBudgetComponent implements OnInit {
   projects: [] | any;
   @ViewChild('content', { static: false }) content!: ElementRef;
+
+  constructor(private budget: ProjectService) {}
+
+  ngOnInit(): void {
+    this.loadBudgets(); // Load budgets initially
+  }
+
+  loadBudgets() {
+    this.budget.getBudget().subscribe((response: any) => {
+      this.projects = response.items;
+      console.log(this.projects);
+    });
+  }
+
   makePdf() {
     const pdf = new jsPDF('p', 'pt', 'a2');
 
@@ -20,7 +33,7 @@ export class ProjectBudgetComponent implements OnInit {
       },
     });
   }
-  constructor(private budget: ProjectService) {}
+
   formData: any = {
     projectId:'',
     type: '',
@@ -29,20 +42,19 @@ export class ProjectBudgetComponent implements OnInit {
     budgetedCost:'',
     currency:''
   };
-  ngOnInit(): void {
-    this.budget.getBudget().subscribe((response: any) => {
-      this.projects = response.items;
-      console.log(this.projects)
+
+  delete(id:string){
+    this.budget.deleteBudget(id).subscribe(() => {
+      console.log('Budget record deleted successfully');
+      this.loadBudgets(); // Reload budgets after successful deletion
     });
   }
 
-  delete(id:string){
-    this.budget.deleteBudget(id).subscribe((response:any) => {
-      null
-    })
-  }
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.budget.createBudget(this.formData).subscribe()
+    this.budget.createBudget(this.formData).subscribe(() => {
+      console.log('Budget record created successfully');
+      this.loadBudgets(); // Reload budgets after successful creation
+    });
   }
 }

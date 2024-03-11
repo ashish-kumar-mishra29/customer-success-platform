@@ -1,14 +1,27 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProjectDescriptionService } from '../../services/project-description.service';
 import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-project-description',
   templateUrl: './project-description.component.html',
-  styleUrl: './project-description.component.css',
+  styleUrls: ['./project-description.component.css'] // Use styleUrls instead of styleUrl
 })
-export class ProjectDescriptionComponent {
+export class ProjectDescriptionComponent implements OnInit {
   @ViewChild('content', { static: false }) content!: ElementRef;
+
+  constructor(private description: ProjectDescriptionService) {}
+
+  ngOnInit(): void {
+    this.loadDescriptions(); // Load descriptions initially
+  }
+
+  loadDescriptions() {
+    this.description.getDescription().subscribe((response: any) => {
+      this.projects = response.items;
+      console.log(this.projects);
+    });
+  }
 
   makePdf() {
     const pdf = new jsPDF('p', 'pt', 'a2');
@@ -21,7 +34,6 @@ export class ProjectDescriptionComponent {
   }
 
   projects: [] | any;
-  constructor(private description: ProjectDescriptionService) {}
   formData: any = {
     version: '',
     type: '',
@@ -32,24 +44,19 @@ export class ProjectDescriptionComponent {
     approvalDate: '',
     approvedBy: '',
   };
-  ngOnInit(): void {
-    this.description.getDescription().subscribe((response: any) => {
-      this.projects = response.items;
-      console.log(this.projects);
+
+  delete(id: string) {
+    this.description.deleteDescription(id).subscribe(() => {
+      console.log('Description deleted successfully');
+      this.loadDescriptions(); // Reload descriptions after successful deletion
     });
   }
 
-  delete(id: string) {
-    this.description.deleteDescription(id).subscribe((response: any) => {
-      null;
-    });
-  }
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.description
-      .createDescription(this.formData)
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+    this.description.createDescription(this.formData).subscribe(() => {
+      console.log('Description created successfully');
+      this.loadDescriptions(); // Reload descriptions after successful creation
+    });
   }
 }

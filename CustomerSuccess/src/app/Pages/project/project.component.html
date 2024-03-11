@@ -1,0 +1,45 @@
+<button id="download-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Name</label>
+    <input type="text" [(ngModel)]="formData.name" name="name" required />
+  </div>
+  <div>
+    <label>Description</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.description"
+      name="description"
+      required
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+<div>
+  <table id="content" #content>
+    <div></div>
+    <thead>
+      <tr>
+        <th>Project Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects; let i = index">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+
+        <td>
+          <button (click)="delete(item.id)">
+            <i class="material-icons">delete</i></button
+          ><button (click)="edit(item)">
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

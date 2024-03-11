@@ -2,17 +2,16 @@
 <form (ngSubmit)="onSubmit()">
   <div>
     <label>Audit Date:</label>
-    <input type="text" [(ngModel)]="formData.audit" name="auditDate" required />
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="formData.audit" name="auditDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
 
   <div>
     <label>Review By:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.reviewedBy"
-      name="createdBy"
-      required
-    />
+    <input type="text" [(ngModel)]="formData.reviewedBy" name="createdBy" required />
   </div>
   <div>
     <label>Status :</label>
@@ -20,12 +19,7 @@
   </div>
   <div>
     <label>Review section</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.reviewedSection"
-      name="review"
-      required
-    />
+    <input type="text" [(ngModel)]="formData.reviewedSection" name="review" required />
   </div>
   <div>
     <label>Comment:</label>
@@ -33,20 +27,12 @@
   </div>
   <div>
     <label>Action Item:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.actionItem"
-      name="action"
-      required
-    />
+    <input type="text" [(ngModel)]="formData.actionItem" name="action" required />
   </div>
   <button type="submit">Submit</button>
 </form>
 <div >
   <table id="content" #content>
-    <div>
-      
-    </div>
     <thead>
       <tr>
         <th>Audit Date</th>
@@ -77,4 +63,3 @@
     </tbody>
   </table>
 </div>
-

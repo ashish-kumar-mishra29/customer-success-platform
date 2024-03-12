@@ -1,26 +1,39 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-project-budget',
   templateUrl: './project-budget.component.html',
-  styleUrls: ['./project-budget.component.css'] // Use styleUrls instead of styleUrl
+  styleUrls: ['./project-budget.component.css'], // Use styleUrls instead of styleUrl
 })
 export class ProjectBudgetComponent implements OnInit {
   projects: [] | any;
+
   @ViewChild('content', { static: false }) content!: ElementRef;
 
-  constructor(private budget: ProjectService) {}
-
+  constructor(
+    private budget: ProjectService,
+    private project: CreateProjectService
+  ) {}
+  availableIds: [] | any;
   ngOnInit(): void {
     this.loadBudgets(); // Load budgets initially
+    this.getId();
   }
 
   loadBudgets() {
     this.budget.getBudget().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
+    });
+  }
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds)
     });
   }
 
@@ -35,15 +48,15 @@ export class ProjectBudgetComponent implements OnInit {
   }
 
   formData: any = {
-    projectId:'',
+    projectId: '',
     type: '',
     durationInMonths: null,
     budgetedHours: null,
-    budgetedCost:'',
-    currency:''
+    budgetedCost: '',
+    currency: '',
   };
 
-  delete(id:string){
+  delete(id: string) {
     this.budget.deleteBudget(id).subscribe(() => {
       console.log('Budget record deleted successfully');
       this.loadBudgets(); // Reload budgets after successful deletion

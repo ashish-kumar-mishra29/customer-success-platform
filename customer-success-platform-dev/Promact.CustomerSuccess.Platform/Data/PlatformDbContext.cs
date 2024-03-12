@@ -20,6 +20,7 @@ public class PlatformDbContext : AbpDbContext<PlatformDbContext>
     }
 
     public DbSet<Project> Projects { get; set; }
+    public DbSet<ApprovedTeam> ApprovedTeam { get; set; }
     public DbSet<Document> Documents { get; set; }
     public DbSet<DocumentVersion> DocumentVersions { get; set; }
     public DbSet<Organization> Organizations { get; set; }
@@ -120,6 +121,10 @@ public class PlatformDbContext : AbpDbContext<PlatformDbContext>
         builder.Entity<ApplicationUser>(ApplicationUser =>
         {
             ApplicationUser.ConfigureByConvention();
+        });
+        builder.Entity<ApprovedTeam>(ApprovedTeam =>
+        {
+            ApprovedTeam.ConfigureByConvention();
         });
 
 

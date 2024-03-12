@@ -1,3 +1,4 @@
+using Auth0.AspNetCore.Authentication;
 using Promact.CustomerSuccess.Platform.Data;
 using Serilog;
 using Serilog.Events;
@@ -35,6 +36,11 @@ public class Program
         try
         {
             var builder = WebApplication.CreateBuilder(args);
+           
+           
+            builder.Services.AddControllersWithViews();
+            
+
             builder.Host.AddAppSettingsSecretsJson()
                 .UseAutofac()
                 .UseSerilog();
@@ -49,6 +55,7 @@ public class Program
             }
             await builder.AddApplicationAsync<PlatformModule>();
             var app = builder.Build();
+           
             await app.InitializeApplicationAsync();
 
             if (IsMigrateDatabase(args))

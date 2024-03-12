@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuditService } from '../../services/audit.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
 
 @Component({
   selector: 'app-audit-history',
@@ -10,16 +11,27 @@ import jsPDF from 'jspdf';
 export class AuditHistoryComponent {
   @ViewChild('content', { static: false }) content!: ElementRef;
 
-  constructor(private audit: AuditService) {}
+  constructor(
+    private audit: AuditService,
+    private project: CreateProjectService
+  ) {}
 
   ngOnInit(): void {
     this.loadAuditRecords(); // Load audit records initially
+    this.getId();
   }
 
   loadAuditRecords() {
     this.audit.getAudit().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
+    });
+  }
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
     });
   }
 

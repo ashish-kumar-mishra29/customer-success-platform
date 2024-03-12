@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Promact.CustomerSuccess.Platform.Migrations
 {
     [DbContext(typeof(PlatformDbContext))]
-    [Migration("20240311101353_MOM-update")]
-    partial class MOMupdate
+    [Migration("20240312121423_Added")]
+    partial class Added
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,69 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Promact.CustomerSuccess.Platform.Entities.ApprovedTeam", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AvailabilityPercentage")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<int>("NumberOfResources")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Phase")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("duration")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LastModifierId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ApprovedTeam");
+                });
+
             modelBuilder.Entity("Promact.CustomerSuccess.Platform.Entities.AuditHistory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -89,6 +152,13 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                     b.Property<DateTime>("Audit")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("CreationTime");
@@ -97,6 +167,11 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("CreatorId");
 
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("ExtraProperties");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("LastModificationTime");
@@ -104,6 +179,9 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ReviewedBy")
                         .IsRequired()
@@ -122,6 +200,12 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("LastModifierId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("AuditHistory");
                 });
@@ -2601,6 +2685,52 @@ namespace Promact.CustomerSuccess.Platform.Migrations
                         .HasForeignKey("TenantId");
 
                     b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("Promact.CustomerSuccess.Platform.Entities.ApprovedTeam", b =>
+                {
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.ApplicationUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
+
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.ApplicationUser", "LastModifier")
+                        .WithMany()
+                        .HasForeignKey("LastModifierId");
+
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("LastModifier");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Promact.CustomerSuccess.Platform.Entities.AuditHistory", b =>
+                {
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.ApplicationUser", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
+
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.ApplicationUser", "LastModifier")
+                        .WithMany()
+                        .HasForeignKey("LastModifierId");
+
+                    b.HasOne("Promact.CustomerSuccess.Platform.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("LastModifier");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Promact.CustomerSuccess.Platform.Entities.ClientFeedback", b =>

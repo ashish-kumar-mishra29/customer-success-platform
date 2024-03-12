@@ -60,9 +60,10 @@ public class PlatformAutoMapperProfile : Profile
         CreateMap<UpdatePhaseMilestoneDto,PhaseMilestone>();
         CreateMap<PhaseMilestone, PhaseMilestoneDto>().ReverseMap();
 
-
-
-        //12th Escalation Matrix
+        //12th Approved Team
+        CreateMap<CreateApprovedTeamDto, ApprovedTeam>();
+        CreateMap<UpdateApprovedTeamDto, ApprovedTeam>();
+        CreateMap<ApprovedTeam, ApprovedTeamDto>().ReverseMap();
 
 
 

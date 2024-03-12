@@ -12,9 +12,11 @@ import { ProjectDescriptionComponent } from './Pages/project-description/project
 import { ProjectScopeComponent } from './Pages/project-scope/project-scope.component';
 import { ProjectStackComponent } from './Pages/project-stack/project-stack.component';
 import { ProjectComponent } from './Pages/project/project.component';
+import { ApprovedTeamComponent } from './Pages/approved-team/approved-team.component';
 
 const routes: Routes = [
   {path: '', component:NavbarComponent},
+  {path:'approvedTeam', component:ApprovedTeamComponent},
   {path:'version', component:VersionHistoryComponent},
   {path: 'audit', component:AuditHistoryComponent},
   {path:'escalation', component:EscalationMatrixComponent},

@@ -34,6 +34,7 @@ import { ProjectComponent } from './Pages/project/project.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'; // Import MatDatepickerModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { AuthModule } from '@auth0/auth0-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,6 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ResourcesComponent,
     MOMsComponent,
     ProjectComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -71,10 +71,16 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     FormsModule,
     MatDatepickerModule,
     BrowserAnimationsModule,
-    MatMomentDateModule
-    
+    MatMomentDateModule,
+    AuthModule.forRoot({
+      domain: 'dev-bk13bjfn4p40ely1.us.auth0.com',
+      clientId: 'iRG8G2clT427noluh6De7GDkFjqdHrHg',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
   ],
-  providers: [provideAnimationsAsync(),ProjectService],
+  providers: [provideAnimationsAsync(), ProjectService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

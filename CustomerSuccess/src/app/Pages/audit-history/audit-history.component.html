@@ -1,5 +1,11 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>ID:</label>
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option *ngFor="let item of availableIds; let i = index" value="{{item.id}}">{{ item.name }}</option>
+    </select>
+  </div>
   <div>
     <label>Audit Date:</label>
     <mat-form-field>

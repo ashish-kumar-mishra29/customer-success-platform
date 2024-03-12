@@ -3,9 +3,7 @@
 namespace Promact.CustomerSuccess.Platform.Services.Dtos
 {
     public class UpdateAuditHistoryDto
-    {
-        [Required]
-        
+    {   
         public required DateTime Audit { get; set; }
         public required string ReviewedBy { get; set; }
         public required string status { get; set; }

@@ -7,7 +7,20 @@
       <input type="text" placeholder="Search" class="search-bar" />
     </div>
     <div class="navbar-right">
-      <button class="loginBtn">Login</button>
+      <button
+        *ngIf="!(_auth.isAuthenticated$ | async)"
+        (click)="_auth.loginWithPopup()"
+        class="loginBtn"
+      >
+        Login
+      </button>
+      <button
+        *ngIf="_auth.isAuthenticated$ | async"
+        (click)="_auth.logout()"
+        class="loginBtn"
+      >
+        Log out
+      </button>
     </div>
   </mat-toolbar>
   <div class="container">

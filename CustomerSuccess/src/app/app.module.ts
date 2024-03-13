@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
-import { NavbarComponent } from './Pages/navbar/navbar.component';
 import { ProjectBudgetComponent } from './Pages/project-budget/project-budget.component';
 import { AuditHistoryComponent } from './Pages/audit-history/audit-history.component';
 import { VersionHistoryComponent } from './Pages/version-history/version-history.component';
@@ -35,11 +34,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker'; // Import Ma
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { AuthModule } from '@auth0/auth0-angular';
+import { AllProjectsComponent } from './Pages/all-projects/all-projects.component';
+import { ClientComponent } from './Pages/client/client.component';
+import { AuditorComponent } from './Pages/auditor/auditor.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavbarComponent,
     ProjectBudgetComponent,
     AuditHistoryComponent,
     VersionHistoryComponent,
@@ -58,6 +59,9 @@ import { AuthModule } from '@auth0/auth0-angular';
     ResourcesComponent,
     MOMsComponent,
     ProjectComponent,
+    AllProjectsComponent,
+    ClientComponent,
+    AuditorComponent,
   ],
   imports: [
     BrowserModule,

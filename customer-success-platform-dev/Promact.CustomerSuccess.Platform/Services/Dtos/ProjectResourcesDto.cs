@@ -6,7 +6,6 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
     {
         public Guid Id { get; set; }
         public Guid ProjectId { get; set; }
-        public Guid ResourceId { get; set; }
         public double AllocationPercentage { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }

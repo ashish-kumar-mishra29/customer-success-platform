@@ -8,6 +8,6 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
         public RiskType RiskType { get; set; }
         public RiskSeverity Severity { get; set; }
         public RiskImpact Impact { get; set; }
-        public ICollection<RemediationStepDto> RemediationSteps { get; set; }
+       
     }
 }

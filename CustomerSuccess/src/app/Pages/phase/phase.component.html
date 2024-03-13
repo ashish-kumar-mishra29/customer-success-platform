@@ -1,28 +1,53 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
     <label>ID:</label>
-    <input type="text" [(ngModel)]="formData.projectId" name="id" required />
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option
+        *ngFor="let item of availableIds; let i = index"
+        value="{{ item.id }}"
+      >
+        {{ item.name }}
+      </option>
+    </select>
   </div>
   <div class="form-group">
-    <label>Type:</label>
-    <input type="number" [(ngModel)]="formData.type" name="type" required />
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="formData.title" name="title" required />
   </div>
   <div class="form-group">
-    <label>Duration In Months:</label>
-    <input type="number" [(ngModel)]="formData.durationInMonths" name="budget" required />
+    <label>Start Date:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.startDate"
+      name="startDate"
+      required
+    />
   </div>
   <div class="form-group">
-    <label>Budgeted Hours:</label>
-    <input type="number" [(ngModel)]="formData.budgetedHours" name="time" required />
+    <label>End Date:</label>
+    <input type="text" [(ngModel)]="formData.endDate" name="endDate" required />
   </div>
   <div class="form-group">
-    <label>Budgeted cost:</label>
-    <input type="number" [(ngModel)]="formData.budgetedCost" name="cost" required />
+    <label>Description:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.description"
+      name="description"
+      required
+    />
   </div>
   <div class="form-group">
-    <label> Currency:</label>
-    <input type="text" [(ngModel)]="formData.currency" name="currency" required />
+    <label> Comments:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.comments"
+      name="comments"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label> Status:</label>
+    <input type="number" [(ngModel)]="formData.status" name="status" required />
   </div>
   <button type="submit" class="submit-button">Submit</button>
 </form>
@@ -31,22 +56,24 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Project Type</th>
-      <th>Duration (In Months)</th>
-      <th>Budget Hours</th>
-      <th>Budgeted Cost</th>
-      <th>Currency</th>
+      <th>Title</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Description</th>
+      <th>comments</th>
+      <th>Status</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
-      <td>{{item.projectId}}</td>
-      <td>{{ item.type }}</td>
-      <td>{{ item.durationInMonths }}</td>
-      <td>{{ item.budgetedHours }}</td>
-      <td>{{item.budgetedCost}}</td>
-      <td>{{item.currency}}</td>
+      <td>{{ item.projectId }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.startDate }}</td>
+      <td>{{ item.endDate }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.comments }}</td>
+      <td>{{ item.status }}</td>
       <td>
         <button (click)="delete(item.id)" class="action-button">
           <i class="material-icons">delete</i>

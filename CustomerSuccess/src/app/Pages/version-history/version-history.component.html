@@ -1,6 +1,17 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
+    <label>ID:</label>
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option
+        *ngFor="let item of availableIds; let i = index"
+        value="{{ item.id }}"
+      >
+        {{ item.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
     <label>Version</label>
     <input type="text" [(ngModel)]="formData.version" name="version" required />
   </div>
@@ -18,19 +29,39 @@
   </div>
   <div class="form-group">
     <label>Created By:</label>
-    <input type="text" [(ngModel)]="formData.createdBy" name="createdBy" required />
+    <input
+      type="text"
+      [(ngModel)]="formData.createdBy"
+      name="createdBy"
+      required
+    />
   </div>
   <div class="form-group">
     <label>Revision Date:</label>
-    <input type="text" [(ngModel)]="formData.revisionDate" name="revisionDate" required />
+    <input
+      type="text"
+      [(ngModel)]="formData.revisionDate"
+      name="revisionDate"
+      required
+    />
   </div>
   <div class="form-group">
     <label>Approval Date:</label>
-    <input type="text" [(ngModel)]="formData.approvalDate" name="approvalDate" required />
+    <input
+      type="text"
+      [(ngModel)]="formData.approvalDate"
+      name="approvalDate"
+      required
+    />
   </div>
   <div class="form-group">
     <label>Approved By:</label>
-    <input type="text" [(ngModel)]="formData.approvedBy" name="approvedBy" required />
+    <input
+      type="text"
+      [(ngModel)]="formData.approvedBy"
+      name="approvedBy"
+      required
+    />
   </div>
   <button type="submit" class="submit-button">Submit</button>
 </form>

@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { StakeHolderService } from '../../services/stake-holder.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
 
 @Component({
   selector: 'app-stakeholders',
@@ -10,39 +11,73 @@ import jsPDF from 'jspdf';
 export class StakeholdersComponent {
   @ViewChild('content', { static: false }) content!: ElementRef;
 
+  constructor(
+    private stake: StakeHolderService,
+    private project: CreateProjectService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadAuditRecords(); // Load audit records initially
+    this.getId();
+  }
+
+  loadAuditRecords() {
+    this.stake.getStakeHolder().subscribe((response: any) => {
+      this.projects = response.items;
+      console.log(this.projects);
+    });
+  }
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
+    });
+  }
+
   makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a2');
+    const pdf = new jsPDF('p', 'pt', 'a3');
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save('StakeHolder.pdf');
+        pdf.save('AuditHistory.pdf');
       },
     });
   }
 
   projects: [] | any;
-  constructor(private stakeHolder: StakeHolderService) {}
   formData: any = {
-    version: '',
-    type: '',
-    change: '',
+    projectId: '',
+    title: '',
+    name: '',
+    contact: '',
   };
-  ngOnInit(): void {
-    this.stakeHolder.getStakeHolder().subscribe((response: any) => {
-      this.projects = response.items;
-      console.log(this.projects);
+
+  delete(id: string) {
+    this.stake.deleteStakeHolder(id).subscribe(() => {
+      console.log('Audit record deleted successfully');
+      this.loadAuditRecords(); // Reload audit records after successful deletion
     });
   }
 
-  delete(id: string) {
-    this.stakeHolder.deleteStakeHolder(id).subscribe((response: any) => {
-      null;
-    });
+  edit(id: string) {
+    this.stake.updateStakeHolder(id, this.formData).subscribe(
+      () => {
+        console.log('Audit record updated successfully');
+        this.loadAuditRecords(); // Reload audit records after successful update
+      },
+      (error) => {
+        console.error('Error updating audit record:', error);
+        // Optionally, handle the error gracefully and provide user feedback
+      }
+    );
   }
+
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.stakeHolder.createStakeHolder(this.formData).subscribe((response: any) => {
-      console.log(response);
+    this.stake.createStakeHolder(this.formData).subscribe(() => {
+      console.log('Audit record created successfully');
+      this.loadAuditRecords(); // Reload audit records after successful creation
     });
   }
 }

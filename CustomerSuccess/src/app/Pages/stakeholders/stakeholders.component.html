@@ -1,8 +1,14 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
+    <label>ID:</label>
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option *ngFor="let item of availableIds; let i = index" value="{{item.id}}">{{ item.name }}</option>
+    </select>
+  </div>
+  <div class="form-group">
     <label>Title</label>
-    <input type="text" [(ngModel)]="formData.title" name="title" required />
+    <input type="number" [(ngModel)]="formData.title" name="title" required />
   </div>
   <div class="form-group">
     <label>Name</label>
@@ -19,14 +25,16 @@
 <table class="table-container" #content>
   <thead>
     <tr>
-      <th>Version</th>
-      <th>Type</th>
+      <th>Project Id</th>
+      <th>Title</th>
+      <th>Name</th>
       <th>Contact</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.id }}</td>
       <td>{{ item.title }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.contact }}</td>

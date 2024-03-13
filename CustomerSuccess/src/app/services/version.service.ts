@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class VersionService {
   constructor(private http: HttpClient) {}
   baseUrl = 'https://localhost:44347/api/app/version-history';
-  //CRUD operation for BUDGET
+  
   getVersion() {
     return this.http.get(this.baseUrl);
   }

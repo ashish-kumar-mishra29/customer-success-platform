@@ -1,0 +1,25 @@
+<div>
+  <table id="content" #content>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects; let i = index">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+
+        <td>
+          <button (click)="delete(item.id)">
+            <i class="material-icons">delete</i></button
+          ><button>
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

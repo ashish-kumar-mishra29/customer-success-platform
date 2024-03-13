@@ -29,7 +29,9 @@
         <button class="sidebar-button btn1" routerLink="/project">
           <mat-icon>add</mat-icon>New Project
         </button>
-        <button class="sidebar-button">Projects</button>
+        <button class="sidebar-button" routerLink="/allProject">
+          Projects
+        </button>
         <button class="sidebar-button">Project Managers</button>
         <button class="sidebar-button">Employees</button>
         <button class="sidebar-button">Setting</button>
@@ -47,6 +49,14 @@
       <div routerLink="/scope" class="nav-item">Scope</div>
       <div routerLink="/phase" class="nav-item">Phases</div>
       <div routerLink="/stack" class="nav-item">Project Stack</div>
+
+      <div routerLink="/sprint" class="nav-item">Sprint-Wise-Detail</div>
+      <div routerLink="/" class="nav-item">Approved Team</div>
+      <div routerLink="/" class="nav-item">Resources</div>
+      <div routerLink="/clientFeedback" class="nav-item">Client Feedback</div>
+      <div routerLink="/mom" class="nav-item">MOM</div>
+      <div routerLink="/projectUpdate" class="nav-item">Project Update</div>
+      <div routerLink="/risk" class="nav-item">Risk Profile</div>
       <router-outlet></router-outlet>
     </div>
   </div>

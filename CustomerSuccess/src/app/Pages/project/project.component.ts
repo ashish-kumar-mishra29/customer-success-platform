@@ -16,7 +16,11 @@ export class ProjectComponent {
   projects: [] | any;
   @ViewChild('content', { static: false }) content!: ElementRef;
 
-  constructor(private project: CreateProjectService) {}
+  constructor(private project: CreateProjectService) {
+    // Initialize form data
+    this.formData.name = '';
+    this.formData.description = '';
+  }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -62,8 +66,11 @@ export class ProjectComponent {
   onSubmit() {
     console.log('Form submitted:', this.formData);
     this.project.createProject(this.formData).subscribe(() => {
-      console.log('Project created successfully');
+      alert('Project created successfully');
       this.loadProjects(); // Reload projects after successful creation
+      this.formData.name = ''; // Clear the name field
+      this.formData.description = ''; // Clear the description field
     });
   }
+  
 }

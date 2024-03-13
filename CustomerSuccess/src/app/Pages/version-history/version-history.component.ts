@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { VersionService } from '../../services/version.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
 
 @Component({
   selector: 'app-version-history',
@@ -8,7 +9,6 @@ import jsPDF from 'jspdf';
   styleUrl: './version-history.component.css',
 })
 export class VersionHistoryComponent {
-
   @ViewChild('content', { static: false }) content!: ElementRef;
 
   makePdf() {
@@ -20,11 +20,11 @@ export class VersionHistoryComponent {
       },
     });
   }
-  
+
   projects: [] | any;
-  constructor(private version: VersionService) {}
+  constructor(private version: VersionService,private project: CreateProjectService) {}
   formData: any = {
-    version:'',
+    version: '',
     type: '',
     change: '',
     changeReason: '',
@@ -33,24 +33,50 @@ export class VersionHistoryComponent {
     approvalDate: '',
     approvedBy: '',
   };
+
   ngOnInit(): void {
+    this.loadProjects();
+    this.getId();
+  }
+
+  loadProjects() {
     this.version.getVersion().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
     });
   }
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
+    });
+  }
+
+  edit(id: string) {
+    this.version.updateVersion(id, this.formData).subscribe(
+      () => {
+        console.log('Audit record updated successfully');
+        this.loadProjects(); // Reload projects after successful update
+      },
+      (error) => {
+        console.error('Error updating audit record:', error);
+      }
+    );
+  }
 
   delete(id: string) {
     this.version.deleteVersion(id).subscribe((response: any) => {
-      null;
+      console.log('Project deleted successfully');
+      this.loadProjects();
     });
   }
+
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.version
-      .createVersion(this.formData)
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+    this.version.createVersion(this.formData).subscribe(() => {
+      alert('Project created successfully');
+      this.loadProjects(); // Reload projects after successful creation
+    });
   }
 }

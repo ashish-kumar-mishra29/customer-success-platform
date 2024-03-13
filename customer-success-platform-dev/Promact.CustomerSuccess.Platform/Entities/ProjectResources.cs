@@ -14,7 +14,7 @@ namespace Promact.CustomerSuccess.Platform.Entities
         public double AllocationPercentage { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public required string Role { get; set; }
+        public  string Role { get; set; }
         public override object?[] GetKeys()
         {
             throw new NotImplementedException();

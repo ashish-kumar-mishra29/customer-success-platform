@@ -9,6 +9,7 @@ public class PlatformAutoMapperProfile : Profile
     public PlatformAutoMapperProfile()
     {
         /* Create your AutoMapper object mappings here */
+        //14th Mapping
         CreateMap<CreateProjectDto, Project>();
         CreateMap<UpdateProjectDto, Project>();
         CreateMap<Project, ProjectDto>().ReverseMap();
@@ -65,7 +66,10 @@ public class PlatformAutoMapperProfile : Profile
         CreateMap<UpdateApprovedTeamDto, ApprovedTeam>();
         CreateMap<ApprovedTeam, ApprovedTeamDto>().ReverseMap();
 
-
+        //13th Project Update
+        CreateMap<CreateProjectUpdateDto, ProjectUpdate>();
+        CreateMap<UpdateProjectUpdateDto, ProjectUpdate>();
+        CreateMap<ProjectUpdate, ProjectUpdateDto>().ReverseMap();
 
 
 

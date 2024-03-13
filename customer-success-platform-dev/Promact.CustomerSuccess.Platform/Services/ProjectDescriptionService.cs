@@ -6,11 +6,10 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Promact.CustomerSuccess.Platform.Services
 {
-    public class ProjectDescriptionService : CrudAppService
-        <ProjectDescription,
+    public class ProjectDescriptionService : 
+        CrudAppService<ProjectDescription,
         ProjectDescriptionDto,
         Guid,
-
         PagedAndSortedResultRequestDto,
         UpdateProjectDescriptionDto,
         CreateProjectDescriptionDto>,

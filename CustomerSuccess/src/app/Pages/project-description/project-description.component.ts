@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProjectDescriptionService } from '../../services/project-description.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
 
 @Component({
   selector: 'app-project-description',
@@ -10,10 +11,18 @@ import jsPDF from 'jspdf';
 export class ProjectDescriptionComponent implements OnInit {
   @ViewChild('content', { static: false }) content!: ElementRef;
 
-  constructor(private description: ProjectDescriptionService) {}
+  constructor(private description: ProjectDescriptionService,private project: CreateProjectService) {}
 
   ngOnInit(): void {
     this.loadDescriptions(); // Load descriptions initially
+    this.getId();
+  }
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
+    });
   }
 
   loadDescriptions() {

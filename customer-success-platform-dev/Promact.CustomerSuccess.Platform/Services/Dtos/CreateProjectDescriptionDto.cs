@@ -6,8 +6,9 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
 {
     public class CreateProjectDescriptionDto
     {
-        [Required]
-        public required string Name { get; set; }
+        [ForeignKey("Project")]
+        public Guid ProjectId { get; set; }
+       
         public required string Description { get; set; }
        
     }

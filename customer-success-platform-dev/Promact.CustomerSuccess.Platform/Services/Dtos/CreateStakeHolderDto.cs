@@ -6,8 +6,7 @@ namespace Promact.CustomerSuccess.Platform.Services.Dtos
 {
     public class CreateStakeHolderDto
     {
-        
-        [Required]
+        public Guid ProjectId { get; set; }
         public StakeHolderTitle Title { get; set; }
         public required string Name { get; set; }
         public required string Contact { get; set; }

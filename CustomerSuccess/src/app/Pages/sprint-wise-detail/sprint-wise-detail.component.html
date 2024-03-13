@@ -1,36 +1,49 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>Version</label>
-    <input type="text" [(ngModel)]="formData.version" name="version" required />
+    <label>ID:</label>
+    <select [(ngModel)]="formData.id" name="id" required>
+      <option
+        *ngFor="let item of availableIds; let i = index"
+        value="{{ item.id }}"
+      >
+        {{ item.id }}
+      </option>
+    </select>
   </div>
   <div class="form-group">
-    <label>Type</label>
-    <input type="text" [(ngModel)]="formData.type" name="type" required />
+    <label>Start Date</label>
+    <input type="text" [(ngModel)]="formData.startDate" name="startDate" required />
   </div>
   <div class="form-group">
-    <label>Change:</label>
-    <input type="text" [(ngModel)]="formData.change" name="change" required />
+    <label>End Date</label>
+    <input type="text" [(ngModel)]="formData.endDate" name="endDate" required />
   </div>
   <div class="form-group">
-    <label>Change Reason:</label>
-    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
+    <label>Status:</label>
+    <input type="number" [(ngModel)]="formData.status" name="status" required />
   </div>
   <div class="form-group">
-    <label>Created By:</label>
-    <input type="text" [(ngModel)]="formData.createdBy" name="createdBy" required />
+    <label>Comments :</label>
+    <input type="text" [(ngModel)]="formData.comments" name="comments" required />
   </div>
   <div class="form-group">
-    <label>Revision Date:</label>
-    <input type="text" [(ngModel)]="formData.revisionDate" name="revisionDate" required />
+    <label> Goals:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.goals"
+      name="goals"
+      required
+    />
   </div>
   <div class="form-group">
-    <label>Approval Date:</label>
-    <input type="text" [(ngModel)]="formData.approvalDate" name="approvalDate" required />
-  </div>
-  <div class="form-group">
-    <label>Approved By:</label>
-    <input type="text" [(ngModel)]="formData.approvedBy" name="approvedBy" required />
+    <label>sprintNumber :</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.sprintNumber"
+      name="sprintNumber"
+      required
+    />
   </div>
   <button type="submit" class="submit-button">Submit</button>
 </form>

@@ -1,45 +1,12 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label>Name</label>
-    <input type="text" [(ngModel)]="formData.name" name="name" required />
+<button id="download-btn" mat-raised-button class="action-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Name" [(ngModel)]="formData.name" name="name" required />
+  </mat-form-field>
+  <mat-form-field class="input-field">
+    <textarea matInput placeholder="Description" [(ngModel)]="formData.description" name="description" required></textarea>
+  </mat-form-field>
+  <div class="button-container">
+    <button mat-raised-button type="submit" class="action-btn">Submit</button>
   </div>
-  <div>
-    <label>Description</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.description"
-      name="description"
-      required
-    />
-  </div>
-  <button type="submit">Submit</button>
 </form>
-<div>
-  <table id="content" #content>
-    <div></div>
-    <thead>
-      <tr>
-        <th>Project Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of projects; let i = index">
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.description }}</td>
-
-        <td>
-          <button (click)="delete(item.id)">
-            <i class="material-icons">delete</i></button
-          ><button (click)="edit(item)">
-            <i class="material-icons">edit</i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>

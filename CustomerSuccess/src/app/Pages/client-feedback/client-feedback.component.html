@@ -1,1 +1,94 @@
-<p>client-feedback works!</p>
+<button id="download-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label>ID:</label>
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option
+        *ngFor="let item of availableIds; let i = index"
+        value="{{ item.id }}"
+      >
+        {{ item.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Feedback Date</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.feedbackDate"
+      name="feedbackDate"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label>Feedback Type:</label>
+    <input
+      type="number"
+      [(ngModel)]="formData.feedbackType"
+      name="feedbackType"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label>Action Taken:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.actionTaken"
+      name="actionTaken"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label>Closure Date:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.closureDate"
+      name="closureDate"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label>Details:</label>
+    <input
+      type="text"
+      [(ngModel)]="formData.details"
+      name="closureDate"
+      required
+    />
+  </div>
+
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<table class="table-container" #content>
+  <thead>
+    <tr>
+      <th>Project Id</th>
+      <th>Feedback Date</th>
+      <th>Feedback Type</th>
+      <th>Action Taken</th>
+      <th>Closure Date</th>
+      <th>Details</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.id }}</td>
+      <td>{{ item.feedbackDate }}</td>
+      <td>{{ item.feedbackType }}</td>
+      <td>{{ item.actionTaken }}</td>
+      <td>{{ item.closureDate }}</td>
+      <td>{{ item.details }}</td>
+
+      <td>
+        <button (click)="delete(item.id)" class="action-button">
+          <i class="material-icons">delete</i>
+        </button>
+        <button class="action-button">
+          <i class="material-icons">edit</i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

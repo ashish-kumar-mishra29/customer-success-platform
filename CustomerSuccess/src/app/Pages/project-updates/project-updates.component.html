@@ -1,1 +1,51 @@
-<p>project-updates works!</p>
+<button id="download-btn" (click)="makePdf()">Download</button>
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <label>ID:</label>
+    <select [(ngModel)]="formData.projectId" name="id" required>
+      <option
+        *ngFor="let item of availableIds; let i = index"
+        value="{{ item.id }}"
+      >
+        {{ item.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Date</label>
+    <input type="text" [(ngModel)]="formData.date" name="date" required />
+  </div>
+  <div class="form-group">
+    <label>Update:</label>
+    <input type="text" [(ngModel)]="formData.update" name="update" required />
+  </div>
+
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<table class="table-container" #content>
+  <thead>
+    <tr>
+      <th>Project Id</th>
+      <th>Date</th>
+      <th>Update</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ item.id }}</td>
+      <td>{{ item.date }}</td>
+      <td>{{ item.update }}</td>
+      
+      <td>
+        <button (click)="delete(item.id)" class="action-button">
+          <i class="material-icons">delete</i>
+        </button>
+        <button class="action-button">
+          <i class="material-icons">edit</i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

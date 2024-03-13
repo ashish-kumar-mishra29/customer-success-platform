@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
 import { PhaseMilestoneService } from '../../services/phase-milestone.service';
+import { CreateProjectService } from '../../services/create-project.service';
 
 @Component({
   selector: 'app-phase',
@@ -8,40 +9,63 @@ import { PhaseMilestoneService } from '../../services/phase-milestone.service';
   styleUrl: './phase.component.css',
 })
 export class PhaseComponent {
-  projects: [] | any;
-  @ViewChild('content', { static: false }) content!: ElementRef;
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a2');
+  constructor(
+    private phase: PhaseMilestoneService,
+    private project: CreateProjectService
+  ) {}
 
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('Budget.pdf');
-      },
-    });
-  }
-  constructor(private phase: PhaseMilestoneService) {}
-  formData: any = {
-    projectId: '',
-    type: '',
-    durationInMonths: null,
-    budgetedHours: null,
-    budgetedCost: '',
-    currency: '',
-  };
   ngOnInit(): void {
+    this.loadAuditRecords(); // Load audit records initially
+    this.getId();
+  }
+
+  loadAuditRecords() {
     this.phase.getPhase().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
     });
   }
-
-  delete(id: string) {
-    this.phase.deletePhase(id).subscribe((response: any) => {
-      null;
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
     });
   }
+
+  projects: [] | any;
+  formData: any = {
+    projectId: '',
+    startDate: '',
+    endDate: '',
+    description: '',
+    comments: '',
+    status: '',
+  };
+
+  delete(id: string) {
+    this.phase.deletePhase(id).subscribe(() => {
+      console.log('Audit record deleted successfully');
+      this.loadAuditRecords(); // Reload audit records after successful deletion
+    });
+  }
+
+  edit(id: string) {
+    this.phase.updatePhase(id, this.formData).subscribe(
+      () => {
+        this.loadAuditRecords(); // Reload audit records after successful update
+      },
+      (error) => {
+        console.error('Error updating audit record:', error);
+        // Optionally, handle the error gracefully and provide user feedback
+      }
+    );
+  }
+
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.phase.createPhase(this.formData).subscribe();
+    this.phase.createPhase(this.formData).subscribe(() => {
+      this.loadAuditRecords(); // Reload audit records after successful creation
+    });
   }
 }

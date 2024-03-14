@@ -18,6 +18,7 @@ import { ProjectUpdatesComponent } from './Pages/project-updates/project-updates
 import { ClientFeedbackComponent } from './Pages/client-feedback/client-feedback.component';
 import { MOMsComponent } from './Pages/moms/moms.component';
 import { SprintWiseDetailComponent } from './Pages/sprint-wise-detail/sprint-wise-detail.component';
+import { ResourcesComponent } from './Pages/resources/resources.component';
 
 const routes: Routes = [
   { path: 'approvedTeam', component: ApprovedTeamComponent },
@@ -37,7 +38,9 @@ const routes: Routes = [
   {path:'projectUpdate', component:ProjectUpdatesComponent},
   {path:'clientFeedback', component:ClientFeedbackComponent},
   {path:'mom', component:MOMsComponent},
-  {path:'sprint',component:SprintWiseDetailComponent}
+  {path:'sprint',component:SprintWiseDetailComponent},
+  {path:'resources', component:ResourcesComponent},
+  {path:'approvedTeam', component:ApprovedTeamComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApprovedTeamService } from '../../services/approved-team.service';
 import jsPDF from 'jspdf';
+import { CreateProjectService } from '../../services/create-project.service';
+import { ProjectResourcesService } from '../../services/project-resources.service';
 
 @Component({
   selector: 'app-approved-team',
@@ -8,53 +10,77 @@ import jsPDF from 'jspdf';
   styleUrl: './approved-team.component.css',
 })
 export class ApprovedTeamComponent {
-  projects: [] | any;
   @ViewChild('content', { static: false }) content!: ElementRef;
 
-  constructor(private approvedTeam: ApprovedTeamService) {}
+  constructor(
+    private approve: ApprovedTeamService,
+    private project: CreateProjectService
+  ) {}
 
   ngOnInit(): void {
-    this.loadBudgets(); // Load budgets initially
+    this.loadAuditRecords(); // Load audit records initially
+    this.getId();
   }
 
-  loadBudgets() {
-    this.approvedTeam.getTeam().subscribe((response: any) => {
+  loadAuditRecords() {
+    this.approve.getTeam().subscribe((response: any) => {
       this.projects = response.items;
       console.log(this.projects);
     });
   }
+  availableIds: [] | any;
+  getId() {
+    this.project.getProject().subscribe((response: any) => {
+      this.availableIds = response.items;
+      console.log(this.availableIds);
+    });
+  }
 
   makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a2');
+    const pdf = new jsPDF('p', 'pt', 'a3');
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save('Budget.pdf');
+        pdf.save('AuditHistory.pdf');
       },
     });
   }
 
+  projects: [] | any;
   formData: any = {
     projectId: '',
-    type: '',
-    durationInMonths: null,
-    budgetedHours: null,
-    budgetedCost: '',
-    currency: '',
+    phase: '',
+    numberOfResources: '',
+    role: '',
+    availabilityPercentage: '',
+    duration: '',
   };
 
   delete(id: string) {
-    this.approvedTeam.deleteTeam(id).subscribe(() => {
-      console.log('Budget record deleted successfully');
-      this.loadBudgets(); // Reload budgets after successful deletion
+    this.approve.deleteTeam(id).subscribe(() => {
+      console.log('Audit record deleted successfully');
+      this.loadAuditRecords(); // Reload audit records after successful deletion
     });
+  }
+
+  edit(id: string) {
+    this.approve.updateTeam(id, this.formData).subscribe(
+      () => {
+        console.log('Audit record updated successfully');
+        this.loadAuditRecords(); // Reload audit records after successful update
+      },
+      (error) => {
+        console.error('Error updating audit record:', error);
+        // Optionally, handle the error gracefully and provide user feedback
+      }
+    );
   }
 
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.approvedTeam.createTeam(this.formData).subscribe(() => {
-      console.log('Budget record created successfully');
-      this.loadBudgets(); // Reload budgets after successful creation
+    this.approve.createTeam(this.formData).subscribe(() => {
+      console.log('Audit record created successfully');
+      this.loadAuditRecords(); // Reload audit records after successful creation
     });
   }
 }

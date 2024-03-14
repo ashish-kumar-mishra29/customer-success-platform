@@ -1,29 +1,47 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option
-        *ngFor="let item of availableIds; let i = index"
-        value="{{ item.id }}"
-      >
-        {{ item.name }}
-      </option>
-    </select>
+    <mat-form-field appearance="fill">
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Date</label>
-    <input type="text" [(ngModel)]="formData.date" name="date" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="formData.date"
+        name="date"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Update:</label>
-    <input type="text" [(ngModel)]="formData.update" name="update" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Update:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.update"
+        name="update"
+        required
+      />
+    </mat-form-field>
   </div>
 
-  <button type="submit" class="submit-button">Submit</button>
+  <button type="submit" mat-raised-button color="primary" class="submit-button">
+    Submit
+  </button>
 </form>
 
-<table class="table-container" #content>
+<table #content class="table-container">
   <thead>
     <tr>
       <th>Project Id</th>
@@ -37,13 +55,15 @@
       <td>{{ item.id }}</td>
       <td>{{ item.date }}</td>
       <td>{{ item.update }}</td>
-      
+
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

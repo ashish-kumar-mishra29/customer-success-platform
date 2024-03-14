@@ -67,7 +67,7 @@ export class VersionHistoryComponent {
 
   delete(id: string) {
     this.version.deleteVersion(id).subscribe((response: any) => {
-      console.log('Project deleted successfully');
+      alert(' Deleted successfully');
       this.loadProjects();
     });
   }
@@ -75,7 +75,6 @@ export class VersionHistoryComponent {
   onSubmit() {
     console.log('Form submitted:', this.formData);
     this.version.createVersion(this.formData).subscribe(() => {
-      alert('Project created successfully');
       this.loadProjects(); // Reload projects after successful creation
     });
   }

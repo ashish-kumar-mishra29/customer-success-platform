@@ -1,55 +1,99 @@
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option
-        *ngFor="let item of availableIds; let i = index"
-        value="{{ item.id }}"
-      >
-        {{ item.name }}
-      </option>
-    </select>
+    <mat-form-field>
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Title:</label>
-    <input type="text" [(ngModel)]="formData.title" name="title" required />
+    <mat-form-field>
+      <mat-label>Title:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.title"
+        name="title"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Start Date:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.startDate"
-      name="startDate"
-      required
-    />
+    <mat-form-field>
+      <mat-label>Start Date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="startDatePicker"
+        [(ngModel)]="formData.startDate"
+        name="startDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="startDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>End Date:</label>
-    <input type="text" [(ngModel)]="formData.endDate" name="endDate" required />
+    <mat-form-field>
+      <mat-label>End Date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="endDatePicker"
+        [(ngModel)]="formData.endDate"
+        name="endDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Description:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.description"
-      name="description"
-      required
-    />
+    <mat-form-field>
+      <mat-label>Description:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.description"
+        name="description"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label> Comments:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.comments"
-      name="comments"
-      required
-    />
+    <mat-form-field>
+      <mat-label>Comments:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.comments"
+        name="comments"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label> Status:</label>
-    <input type="number" [(ngModel)]="formData.status" name="status" required />
+    <mat-form-field>
+      <mat-label>Status:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.status"
+        name="status"
+        required
+      />
+    </mat-form-field>
   </div>
-  <button type="submit" class="submit-button">Submit</button>
+  <button type="submit" mat-raised-button color="primary" class="custom-button">
+    Submit
+  </button>
 </form>
 
 <table class="table-container" #content>
@@ -60,7 +104,7 @@
       <th>Start Date</th>
       <th>End Date</th>
       <th>Description</th>
-      <th>comments</th>
+      <th>Comments</th>
       <th>Status</th>
       <th>Action</th>
     </tr>
@@ -69,17 +113,19 @@
     <tr *ngFor="let item of projects; let i = index">
       <td>{{ item.projectId }}</td>
       <td>{{ item.title }}</td>
-      <td>{{ item.startDate }}</td>
-      <td>{{ item.endDate }}</td>
+      <td>{{ item.startDate | date }}</td>
+      <td>{{ item.endDate | date }}</td>
       <td>{{ item.description }}</td>
       <td>{{ item.comments }}</td>
       <td>{{ item.status }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

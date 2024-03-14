@@ -30,14 +30,11 @@ export class MOMsComponent {
   }
   projects: [] | any;
   formData: any = {
-    version: '',
-    type: '',
-    change: '',
-    changeReason: '',
-    createdBy: '',
-    revisionDate: '',
-    approvalDate: '',
-    approvedBy: '',
+    projectId: '',
+    meetingDate: '',
+    moMLink: '',
+    comments: '',
+    duration: '',
   };
 
   delete(id: string) {

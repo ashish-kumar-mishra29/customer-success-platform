@@ -1,69 +1,100 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
+<button mat-button id="download-btn" (click)="makePdf()">Download</button>
 <form (ngSubmit)="onSubmit()" class="form-container">
-  <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option
-        *ngFor="let item of availableIds; let i = index"
-        value="{{ item.id }}"
-      >
-        {{ item.name }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Version</label>
-    <input type="text" [(ngModel)]="formData.version" name="version" required />
-  </div>
-  <div class="form-group">
-    <label>Type</label>
-    <input type="text" [(ngModel)]="formData.type" name="type" required />
-  </div>
-  <div class="form-group">
-    <label>Change:</label>
-    <input type="text" [(ngModel)]="formData.change" name="change" required />
-  </div>
-  <div class="form-group">
-    <label>Change Reason:</label>
-    <input type="text" [(ngModel)]="formData.reason" name="reason" required />
-  </div>
-  <div class="form-group">
-    <label>Created By:</label>
+  <mat-form-field class="form-group">
+    <mat-label>ID:</mat-label>
+    <mat-select [(ngModel)]="formData.projectId" name="id" required>
+      <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
+        item.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Version</mat-label>
     <input
+      matInput
+      type="number"
+      [(ngModel)]="formData.version"
+      name="version"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Type</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="formData.type"
+      name="type"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Change:</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="formData.change"
+      name="change"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Change Reason:</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="formData.changeReason"
+      name="changeReason"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Created By:</mat-label>
+    <input
+      matInput
       type="text"
       [(ngModel)]="formData.createdBy"
       name="createdBy"
       required
     />
-  </div>
-  <div class="form-group">
-    <label>Revision Date:</label>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Revision Date:</mat-label>
     <input
-      type="text"
+      matInput
+      [matDatepicker]="picker"
       [(ngModel)]="formData.revisionDate"
       name="revisionDate"
       required
     />
-  </div>
-  <div class="form-group">
-    <label>Approval Date:</label>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Approval Date:</mat-label>
     <input
-      type="text"
+      matInput
+      [matDatepicker]="picker2"
       [(ngModel)]="formData.approvalDate"
       name="approvalDate"
       required
     />
-  </div>
-  <div class="form-group">
-    <label>Approved By:</label>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <mat-label>Approved By:</mat-label>
     <input
+      matInput
       type="text"
       [(ngModel)]="formData.approvedBy"
       name="approvedBy"
       required
     />
-  </div>
-  <button type="submit" class="submit-button">Submit</button>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary" class="submit-button">
+    Submit
+  </button>
 </form>
 
 <table class="table-container" #content>
@@ -91,11 +122,13 @@
       <td>{{ item.approvalDate }}</td>
       <td>{{ item.approvedBy }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

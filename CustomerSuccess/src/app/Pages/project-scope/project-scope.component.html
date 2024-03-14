@@ -1,18 +1,37 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
+
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>Name: </label>
-    <input type="text" [(ngModel)]="formData.name" name="version" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Name:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.name"
+        name="version"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Description</label>
-    <input type="text" [(ngModel)]="formData.description" name="type" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Description:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.description"
+        name="type"
+        required
+      />
+    </mat-form-field>
   </div>
 
-  <button type="submit" class="submit-button">Submit</button>
+  <button type="submit" mat-raised-button color="primary" class="submit-button">
+    Submit
+  </button>
 </form>
 
-<table  #content class="table-container">
+<table #content class="table-container">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,11 +44,13 @@
       <td>{{ item.name }}</td>
       <td>{{ item.description }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

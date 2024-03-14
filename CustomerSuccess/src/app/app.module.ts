@@ -37,6 +37,8 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { AllProjectsComponent } from './Pages/all-projects/all-projects.component';
 import { ClientComponent } from './Pages/client/client.component';
 import { AuditorComponent } from './Pages/auditor/auditor.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,8 @@ import { AuditorComponent } from './Pages/auditor/auditor.component';
     MatDatepickerModule,
     BrowserAnimationsModule,
     MatMomentDateModule,
+    MatSelectModule,
+    MatNativeDateModule,
     AuthModule.forRoot({
       domain: 'dev-bk13bjfn4p40ely1.us.auth0.com',
       clientId: 'iRG8G2clT427noluh6De7GDkFjqdHrHg',

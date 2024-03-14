@@ -1,63 +1,93 @@
 <button id="download-btn" (click)="makePdf()">Download</button>
+
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option
-        *ngFor="let item of availableIds; let i = index"
-        value="{{ item.id }}"
-      >
-        {{ item.name }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Feedback Date</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.feedbackDate"
-      name="feedbackDate"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label>Feedback Type:</label>
-    <input
-      type="number"
-      [(ngModel)]="formData.feedbackType"
-      name="feedbackType"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label>Action Taken:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.actionTaken"
-      name="actionTaken"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label>Closure Date:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.closureDate"
-      name="closureDate"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label>Details:</label>
-    <input
-      type="text"
-      [(ngModel)]="formData.details"
-      name="closureDate"
-      required
-    />
+    <mat-form-field>
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
-  <button type="submit" class="submit-button">Submit</button>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Feedback Date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="feedbackDatePicker"
+        [(ngModel)]="formData.feedbackDate"
+        name="feedbackDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="feedbackDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #feedbackDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Feedback Type:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.feedbackType"
+        name="feedbackType"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Action Taken:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.actionTaken"
+        name="actionTaken"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Closure Date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="closureDatePicker"
+        [(ngModel)]="formData.closureDate"
+        name="closureDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="closureDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #closureDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Details:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.details"
+        name="details"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <button type="submit" mat-raised-button color="primary">Submit</button>
 </form>
 
 <table class="table-container" #content>
@@ -82,11 +112,13 @@
       <td>{{ item.details }}</td>
 
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

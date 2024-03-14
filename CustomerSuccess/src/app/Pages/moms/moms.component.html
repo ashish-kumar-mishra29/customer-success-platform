@@ -1,34 +1,66 @@
-
 <form (ngSubmit)="onSubmit()" class="form-container">
-    <div class="form-group">
-        <label>Project Name:</label>
-        <select [(ngModel)]="formData.projectId" name="id" required>
-          <option
-            *ngFor="let item of availableIds; let i = index"
-            value="{{ item.id }}"
-          >
-            {{ item.name }}
-          </option>
-        </select>
-      </div>
   <div class="form-group">
-    <label>Meeting Date:</label>
-    <input type="text" [(ngModel)]="formData.meetingDate" name="meetingDate" required />
+    <mat-form-field>
+      <mat-label>Project Name:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>MOM Link  :</label>
-    <input type="text" [(ngModel)]="formData.moMLink" name="moMLink" required />
+    <mat-form-field>
+      <mat-label>Meeting Date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="formData.meetingDate"
+        name="meetingDate"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Comments :</label>
-    <input type="text" [(ngModel)]="formData.comments" name="comments" required />
+    <mat-form-field>
+      <mat-label>MOM Link:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.moMLink"
+        name="moMLink"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Duration :</label>
-    <input type="text" [(ngModel)]="formData.duration" name="duration" required />
+    <mat-form-field>
+      <mat-label>Comments:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.comments"
+        name="comments"
+        required
+      />
+    </mat-form-field>
   </div>
-  
-  <button type="submit" class="submit-button">Submit</button>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Duration:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.duration"
+        name="duration"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button type="submit" class="submit-button">Submit</button>
 </form>
 
 <table class="table-container" #content>
@@ -38,23 +70,25 @@
       <th>Meeting Date</th>
       <th>MOM Link</th>
       <th>Comments</th>
-      <th>Duration </th>
+      <th>Duration</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
-      <td>{{item.projectId}}</td>
+      <td>{{ item.projectId }}</td>
       <td>{{ item.meetingDate }}</td>
       <td>{{ item.moMLink }}</td>
       <td>{{ item.comments }}</td>
-      <td>{{item.duration}}</td>
+      <td>{{ item.duration }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

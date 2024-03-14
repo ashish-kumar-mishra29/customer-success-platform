@@ -1,32 +1,79 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
+<button  id="download-btn" (click)="makePdf()">
+  Download
+</button>
+
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option *ngFor="let item of availableIds; let i = index" value="{{item.id}}">{{ item.name }}</option>
-    </select>
+    <mat-form-field>
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Type:</label>
-    <input type="number" [(ngModel)]="formData.type" name="type" required />
+    <mat-form-field>
+      <mat-label>Type:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.type"
+        name="type"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Duration In Months:</label>
-    <input type="number" [(ngModel)]="formData.durationInMonths" name="budget" required />
+    <mat-form-field>
+      <mat-label>Duration In Months:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.durationInMonths"
+        name="budget"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Budgeted Hours:</label>
-    <input type="number" [(ngModel)]="formData.budgetedHours" name="time" required />
+    <mat-form-field>
+      <mat-label>Budgeted Hours:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.budgetedHours"
+        name="time"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Budgeted cost:</label>
-    <input type="number" [(ngModel)]="formData.budgetedCost" name="cost" required />
+    <mat-form-field>
+      <mat-label>Budgeted cost:</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="formData.budgetedCost"
+        name="cost"
+        required
+      />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label> Currency:</label>
-    <input type="text" [(ngModel)]="formData.currency" name="currency" required />
+    <mat-form-field>
+      <mat-label>Currency:</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="formData.currency"
+        name="currency"
+        required
+      />
+    </mat-form-field>
   </div>
-  <button type="submit" class="submit-button">Submit</button>
+  <button mat-raised-button type="submit" class="submit-button">Submit</button>
 </form>
 
 <table class="table-container" #content>
@@ -43,18 +90,20 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
-      <td>{{item.projectId}}</td>
+      <td>{{ item.projectId }}</td>
       <td>{{ item.type }}</td>
       <td>{{ item.durationInMonths }}</td>
       <td>{{ item.budgetedHours }}</td>
-      <td>{{item.budgetedCost}}</td>
-      <td>{{item.currency}}</td>
+      <td>{{ item.budgetedCost }}</td>
+      <td>{{ item.currency }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

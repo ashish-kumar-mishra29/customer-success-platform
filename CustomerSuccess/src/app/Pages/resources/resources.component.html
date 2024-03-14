@@ -1,1 +1,77 @@
-<p>resources works!</p>
+
+
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Allocation Percentage:</mat-label>
+      <input matInput type="text" [(ngModel)]="formData.allocationPercentage" name="allocationPercentage" required />
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date:</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="formData.start" name="start" required />
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>End Date:</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="formData.end" name="end" required />
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Role:</mat-label>
+      <input matInput type="text" [(ngModel)]="formData.role" name="role" required />
+    </mat-form-field>
+  </div>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>
+
+<div>
+  <table id="content" #content class="table-container ">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Allocation %</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects; let i = index">
+        <td>{{ item.id }}</td>
+        <td>{{ item.allocationPercentage }}</td>
+        <td>{{ item.start }}</td>
+        <td>{{ item.end }}</td>
+        <td>{{ item.role }}</td>
+        <td>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="delete(item.id)"
+            class="action-button"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

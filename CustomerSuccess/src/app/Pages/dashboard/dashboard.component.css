@@ -1,15 +1,13 @@
-/* CSS for Container */
 .container {
   display: flex;
-  height: 100vh; /* Set full height */
+  height: 100vh;
 }
 
-/* CSS for Sidebar */
 .sidenav-container {
   width: 200px;
   background-color: #f2f2f2;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
-  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 .sidenav {
@@ -18,32 +16,30 @@
 
 .sidebar-button {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center;
   width: 100%;
   text-align: left;
-  padding: 12px 20px; /* Increase padding */
+  padding: 12px 20px;
   margin-bottom: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s; /* Add smooth transition */
+  transition: background-color 0.3s;
 }
 
 .sidebar-button:hover {
-  background-color: #e0e0e0; /* Change background color on hover */
+  background-color: #e0e0e0;
 }
 
 .sidebar-button mat-icon {
-  margin-right: 10px; /* Add spacing between icon and text */
+  margin-right: 10px;
 }
 
-/* Adjust text color and font size */
 .sidebar-button span {
   color: #333;
   font-size: 16px;
 }
 
-/* CSS for Navbar */
 .navbar {
   flex: 1;
   padding: 10px;
@@ -54,18 +50,17 @@
   padding: 10px;
   color: black;
   text-decoration: none;
-  transition: color 0.3s; /* Add smooth transition */
+  transition: color 0.3s;
 }
 
 .nav-item:hover {
-  color: #007bff; /* Change text color on hover */
+  color: #007bff;
 }
 
-/* CSS for Mat Toolbar */
 .mat-toolbar {
-  background-color: #2196f3; /* Change toolbar background color */
-  color: white; /* Change text color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  background-color: #2196f3;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left {
@@ -84,10 +79,10 @@
   justify-content: flex-end;
 }
 
-/* CSS for Mat Icon */
 ::ng-deep .mat-form-field-prefix .mat-icon {
   margin-right: 5px;
 }
+
 .custom-toolbar {
   display: flex;
   justify-content: space-between;
@@ -97,9 +92,8 @@
 .logo-text {
   font-size: 24px;
   font-weight: bold;
-  color: white; /* Change color as desired */
+  color: white;
 }
-
 
 .loginBtn {
   width: 20%;
@@ -109,21 +103,35 @@
   color: white;
   border-radius: 10px;
 }
+
 .search-bar {
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 16px;
-  width: 500px; /* Adjust width as desired */
+  width: 500px;
 }
 
 .search-bar:focus {
   outline: none;
-  border-color: #007bff; /* Change focus border color as desired */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Change focus box shadow as desired */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Placeholder color */
 .search-bar::placeholder {
-  color: #aaa; /* Adjust placeholder color as desired */
+  color: #aaa;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidenav-container {
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .loginBtn {
+    width: auto;
+  }
 }

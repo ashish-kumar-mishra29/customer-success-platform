@@ -1,28 +1,36 @@
-<button id="download-btn" (click)="makePdf()">Download</button>
+<button id="download-btn" (click)="makePdf()" mat-raised-button color="primary">Download</button>
+
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
-    <label>ID:</label>
-    <select [(ngModel)]="formData.projectId" name="id" required>
-      <option *ngFor="let item of availableIds; let i = index" value="{{item.id}}">{{ item.name }}</option>
-    </select>
+    <mat-form-field appearance="fill">
+      <mat-label>ID:</mat-label>
+      <mat-select [(ngModel)]="formData.projectId" name="id" required>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{ item.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Risk Type</label>
-    <input type="number" [(ngModel)]="formData.riskType" name="riskType" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Risk Type:</mat-label>
+      <input matInput type="number" [(ngModel)]="formData.riskType" name="riskType" required />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Severity</label>
-    <input type="number" [(ngModel)]="formData.severity" name="severity" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Severity:</mat-label>
+      <input matInput type="number" [(ngModel)]="formData.severity" name="severity" required />
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label>Impact:</label>
-    <input type="number" [(ngModel)]="formData.impact" name="impact" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Impact:</mat-label>
+      <input matInput type="number" [(ngModel)]="formData.impact" name="impact" required />
+    </mat-form-field>
   </div>
-
-  <button type="submit" class="submit-button">Submit</button>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
 </form>
 
-<table class="table-container" #content>
+<table #content class="table-container ">
   <thead>
     <tr>
       <th>Project Id</th>
@@ -39,11 +47,13 @@
       <td>{{ item.severity }}</td>
       <td>{{ item.impact }}</td>
       <td>
-        <button (click)="delete(item.id)" class="action-button">
-          <i class="material-icons">delete</i>
-        </button>
-        <button class="action-button">
-          <i class="material-icons">edit</i>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(item.id)"
+          class="action-button"
+        >
+          Delete
         </button>
       </td>
     </tr>

@@ -1,5 +1,6 @@
 using Auth0.AspNetCore.Authentication;
 using Promact.CustomerSuccess.Platform.Data;
+using Promact.CustomerSuccess.Platform.Services.EmailService;
 using Serilog;
 using Serilog.Events;
 using Volo.Abp.Data;
@@ -39,7 +40,18 @@ public class Program
            
            
             builder.Services.AddControllersWithViews();
-            
+            builder.Services.AddScoped<IEmail, EmailService>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("emailApp", policyBuilder =>
+                {
+                    policyBuilder.WithOrigins("http://localhost:4200");
+                    policyBuilder.AllowAnyHeader();
+                    policyBuilder.AllowAnyMethod();
+                    policyBuilder.AllowCredentials();
+
+                });
+            });
 
             builder.Host.AddAppSettingsSecretsJson()
                 .UseAutofac()

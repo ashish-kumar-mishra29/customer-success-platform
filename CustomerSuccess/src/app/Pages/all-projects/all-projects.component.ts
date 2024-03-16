@@ -5,7 +5,7 @@ import { CreateProjectService } from '../../services/create-project.service';
 @Component({
   selector: 'app-all-projects',
   templateUrl: './all-projects.component.html',
-  styleUrl: './all-projects.component.css'
+  styleUrl: './all-projects.component.css',
 })
 export class AllProjectsComponent {
   projects: [] | any;
@@ -34,11 +34,16 @@ export class AllProjectsComponent {
     });
   }
 
-  delete(id:string){
-    this.project.deleteProject(id).subscribe((response:any) => {
+  delete(id: string) {
+    this.project.deleteProject(id).subscribe((response: any) => {
       console.log('Project deleted successfully');
-      this.loadProjects(); 
+      this.loadProjects();
     });
   }
-  
+  getById(id: string) {
+    this.project.getProjectById(id).subscribe((response: any) => {
+      console.log(id);
+      this.loadProjects();
+    });
+  }
 }

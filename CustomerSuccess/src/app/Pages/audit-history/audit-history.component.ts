@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuditService } from '../../services/audit.service';
 import jsPDF from 'jspdf';
 import { CreateProjectService } from '../../services/create-project.service';
@@ -9,7 +9,7 @@ import { CreateProjectService } from '../../services/create-project.service';
   styleUrls: ['./audit-history.component.css'], // Use styleUrls instead of styleUrl
 })
 export class AuditHistoryComponent {
-  @ViewChild('content', { static: false }) content!: ElementRef;
+  
 
   constructor(
     private audit: AuditService,
@@ -32,16 +32,6 @@ export class AuditHistoryComponent {
     this.project.getProject().subscribe((response: any) => {
       this.availableIds = response.items;
       console.log(this.availableIds);
-    });
-  }
-
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a3');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('AuditHistory.pdf');
-      },
     });
   }
 

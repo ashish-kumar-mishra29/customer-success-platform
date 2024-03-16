@@ -13,14 +13,17 @@ import { ProjectStackComponent } from './Pages/project-stack/project-stack.compo
 import { ProjectComponent } from './Pages/project/project.component';
 import { ApprovedTeamComponent } from './Pages/approved-team/approved-team.component';
 import { AllProjectsComponent } from './Pages/all-projects/all-projects.component';
-import { ClientComponent } from './Pages/client/client.component';
 import { ProjectUpdatesComponent } from './Pages/project-updates/project-updates.component';
 import { ClientFeedbackComponent } from './Pages/client-feedback/client-feedback.component';
 import { MOMsComponent } from './Pages/moms/moms.component';
 import { SprintWiseDetailComponent } from './Pages/sprint-wise-detail/sprint-wise-detail.component';
 import { ResourcesComponent } from './Pages/resources/resources.component';
+import { StakeholderDashboardComponent } from './StakeHolder/stakeholder-dashboard/stakeholder-dashboard.component';
+import { DashboardComponent } from './Pages/dashboard/dashboard.component';
+import { LoginDetailsComponent } from './Login/login-details/login-details.component';
 
 const routes: Routes = [
+  //{ path: '', component: DashboardComponent },
   { path: 'approvedTeam', component: ApprovedTeamComponent },
   { path: 'version', component: VersionHistoryComponent },
   { path: 'audit', component: AuditHistoryComponent },
@@ -34,13 +37,14 @@ const routes: Routes = [
   { path: 'stack', component: ProjectStackComponent },
   { path: 'project', component: ProjectComponent },
   { path: 'allProject', component: AllProjectsComponent },
-  {path: 'client',component:ClientComponent},
-  {path:'projectUpdate', component:ProjectUpdatesComponent},
-  {path:'clientFeedback', component:ClientFeedbackComponent},
-  {path:'mom', component:MOMsComponent},
-  {path:'sprint',component:SprintWiseDetailComponent},
-  {path:'resources', component:ResourcesComponent},
-  {path:'approvedTeam', component:ApprovedTeamComponent}
+  { path: 'projectUpdate', component: ProjectUpdatesComponent },
+  { path: 'clientFeedback', component: ClientFeedbackComponent },
+  { path: 'mom', component: MOMsComponent },
+  { path: 'sprint', component: SprintWiseDetailComponent },
+  { path: 'resources', component: ResourcesComponent },
+  { path: 'approvedTeam', component: ApprovedTeamComponent },
+  { path: 'clientDashboard', component: StakeholderDashboardComponent },
+  {path:'login',component:LoginDetailsComponent}
 ];
 
 @NgModule({

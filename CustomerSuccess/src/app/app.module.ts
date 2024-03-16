@@ -35,10 +35,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AllProjectsComponent } from './Pages/all-projects/all-projects.component';
-import { ClientComponent } from './Pages/client/client.component';
 import { AuditorComponent } from './Pages/auditor/auditor.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { StakeholderDashboardComponent } from './StakeHolder/stakeholder-dashboard/stakeholder-dashboard.component';
+import { LoginDetailsComponent } from './Login/login-details/login-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,8 +64,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MOMsComponent,
     ProjectComponent,
     AllProjectsComponent,
-    ClientComponent,
     AuditorComponent,
+    StakeholderDashboardComponent,
+    LoginDetailsComponent,
   ],
   imports: [
     BrowserModule,

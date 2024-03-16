@@ -1,58 +1,101 @@
-/* CSS for Form Container */
-.form-container {
+/* CSS for Form */
+form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(
+    1,
+    1fr
+  ); /* Change to one column for small screens */
   grid-gap: 20px;
 }
 
-/* CSS for Form Group */
-.form-group {
+/* Adjust form layout for larger screens */
+@media (min-width: 768px) {
+  form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+form div {
   display: flex;
   flex-direction: column;
 }
 
-/* CSS for Table Container */
-.table-container {
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* CSS for Button */
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px; /* Add margin to separate from form */
+  width: 100px; /* Set width to desired value */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* CSS for Table */
+table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-/* CSS for Table Header */
-.table-container th {
+thead th {
   background-color: #f2f2f2;
   padding: 8px;
   text-align: left;
 }
 
-/* CSS for Table Body */
-.table-container td {
+tbody td {
   padding: 8px;
 }
 
-
-.action-button mat-icon {
-  color: #777;
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.action-button:hover mat-icon {
-  color: #333;
+tbody tr:hover {
+  background-color: #ddd;
 }
-/* CSS for Button */
-button[type="submit"],
-button#download-btn {
+#download-btn {
   background-color: #4caf50;
   color: white;
-  padding: 6px 16px; /* Adjust padding to make the button smaller */
+  padding: 8px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
-  width: auto; /* Allow the button width to adjust based on content */
-  font-size: 14px; /* Adjust font size to match the smaller button */
 }
 
-button[type="submit"]:hover,
-button#download-btn:hover {
+#download-btn:hover {
   background-color: #45a049;
+}
+.mat-form-field.mat-form-field-appearance-outline {
+  width: 100%;
+  margin-bottom: 20px; /* Add some space below the date field */
+  background-color: white;
+}
+
+/* Adjust the styling of the input element within mat-form-field */
+.mat-input-element {
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  width: calc(100% - 38px);
 }

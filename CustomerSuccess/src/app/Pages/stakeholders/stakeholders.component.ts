@@ -40,7 +40,7 @@ export class StakeholdersComponent {
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save('AuditHistory.pdf');
+        pdf.save('StakeHolder.pdf');
       },
     });
   }
@@ -78,6 +78,12 @@ export class StakeholdersComponent {
     this.stake.createStakeHolder(this.formData).subscribe(() => {
       console.log('Audit record created successfully');
       this.loadAuditRecords(); // Reload audit records after successful creation
+      this.formData=  {
+        projectId: '',
+        title: '',
+        name: '',
+        contact: '',
+      };
     });
   }
 }

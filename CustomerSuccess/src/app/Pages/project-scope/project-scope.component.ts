@@ -5,7 +5,7 @@ import jsPDF from 'jspdf';
 @Component({
   selector: 'app-project-scope',
   templateUrl: './project-scope.component.html',
-  styleUrl: './project-scope.component.css'
+  styleUrl: './project-scope.component.css',
 })
 export class ProjectScopeComponent {
   @ViewChild('content', { static: false }) content!: ElementRef;
@@ -15,7 +15,7 @@ export class ProjectScopeComponent {
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save('Description.pdf');
+        pdf.save('Scope.pdf');
       },
     });
   }
@@ -46,10 +46,8 @@ export class ProjectScopeComponent {
   }
   onSubmit() {
     console.log('Form submitted:', this.formData);
-    this.scope
-      .createScope(this.formData)
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+    this.scope.createScope(this.formData).subscribe((response: any) => {
+      console.log(response);
+    });
   }
 }

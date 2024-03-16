@@ -25,4 +25,7 @@ export class CreateProjectService {
   updateProject(id: string, data: any) {
     return this.http.put(this.baseUrl + `/${id}`, data);
   }
+  getProjectById(id:string) {
+    return this.http.get(this.baseUrl+`/${id}`);
+  }
 }

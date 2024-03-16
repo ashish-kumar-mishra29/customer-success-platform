@@ -5,32 +5,26 @@
   grid-gap: 20px;
 }
 
-/* CSS for Form Group */
 .form-group {
   display: flex;
   flex-direction: column;
 }
 
-/* CSS for Table Container */
 .table-container {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-/* CSS for Table Header */
 .table-container th {
   background-color: #f2f2f2;
   padding: 8px;
   text-align: left;
 }
 
-/* CSS for Table Body */
 .table-container td {
   padding: 8px;
 }
-
-/* CSS for Action Button */
 
 .action-button i {
   color: #777;
@@ -40,7 +34,6 @@
   color: #333;
 }
 
-/* CSS for Custom Button */
 .custom-button {
   width: 100px; /* Adjust the width according to your preference */
 }

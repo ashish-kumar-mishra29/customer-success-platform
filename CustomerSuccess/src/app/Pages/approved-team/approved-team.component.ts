@@ -1,8 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApprovedTeamService } from '../../services/approved-team.service';
-import jsPDF from 'jspdf';
 import { CreateProjectService } from '../../services/create-project.service';
-import { ProjectResourcesService } from '../../services/project-resources.service';
+
 
 @Component({
   selector: 'app-approved-team',
@@ -33,16 +32,6 @@ export class ApprovedTeamComponent {
     this.project.getProject().subscribe((response: any) => {
       this.availableIds = response.items;
       console.log(this.availableIds);
-    });
-  }
-
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a3');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('AuditHistory.pdf');
-      },
     });
   }
 

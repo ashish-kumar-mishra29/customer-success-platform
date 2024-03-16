@@ -1,20 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CreateProjectService } from '../../services/create-project.service';
-import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css'] // Use styleUrls instead of styleUrl
+  styleUrls: ['./project.component.css'], // Use styleUrls instead of styleUrl
 })
 export class ProjectComponent {
-  
   formData: any = {
-    name:'',
+    name: '',
     description: '',
   };
   projects: [] | any;
-  @ViewChild('content', { static: false }) content!: ElementRef;
 
   constructor(private project: CreateProjectService) {
     // Initialize form data
@@ -33,16 +30,6 @@ export class ProjectComponent {
     });
   }
 
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a2');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('Budget.pdf');
-      },
-    });
-  }
-
   edit(id: string) {
     this.project.updateProject(id, this.formData).subscribe(
       () => {
@@ -55,13 +42,12 @@ export class ProjectComponent {
     );
   }
 
-  delete(id:string){
-    this.project.deleteProject(id).subscribe((response:any) => {
+  delete(id: string) {
+    this.project.deleteProject(id).subscribe((response: any) => {
       console.log('Project deleted successfully');
-      this.loadProjects(); 
+      this.loadProjects();
     });
   }
-
 
   onSubmit() {
     console.log('Form submitted:', this.formData);
@@ -72,5 +58,4 @@ export class ProjectComponent {
       this.formData.description = ''; // Clear the description field
     });
   }
-  
 }

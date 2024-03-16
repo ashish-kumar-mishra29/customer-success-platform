@@ -36,7 +36,7 @@ export class RiskProfilingComponent {
   }
 
   makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a3');
+    const pdf = new jsPDF('p', 'pt', 'a2');
 
     pdf.html(this.content.nativeElement, {
       callback: (pdf) => {

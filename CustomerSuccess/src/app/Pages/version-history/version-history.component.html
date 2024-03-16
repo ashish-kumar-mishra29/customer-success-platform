@@ -100,6 +100,7 @@
 <table class="table-container" #content>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Version</th>
       <th>Type</th>
       <th>Change</th>
@@ -113,6 +114,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
+      <td>{{item.id}}</td>
       <td>{{ item.version }}</td>
       <td>{{ item.type }}</td>
       <td>{{ item.change }}</td>

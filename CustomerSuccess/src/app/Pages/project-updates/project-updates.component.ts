@@ -1,7 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { CreateProjectService } from '../../services/create-project.service';
 import { ProjectUpdateService } from '../../services/project-update.service';
-import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-project-updates',
@@ -9,7 +9,6 @@ import jsPDF from 'jspdf';
   styleUrl: './project-updates.component.css'
 })
 export class ProjectUpdatesComponent {
-  @ViewChild('content', { static: false }) content!: ElementRef;
 
   constructor(
     private update: ProjectUpdateService,
@@ -35,15 +34,6 @@ export class ProjectUpdatesComponent {
     });
   }
 
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a3');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('AuditHistory.pdf');
-      },
-    });
-  }
 
   projects: [] | any;
   formData: any = {

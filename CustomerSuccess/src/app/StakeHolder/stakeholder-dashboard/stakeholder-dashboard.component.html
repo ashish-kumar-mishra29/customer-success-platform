@@ -1,0 +1,64 @@
+<div class="main-container">
+    <mat-toolbar color="primary" class="custom-toolbar">
+      <div class="navbar-left">
+        <span class="logo-text">CSP</span>
+      </div>
+      <div class="navbar-center">
+        <input type="text" placeholder="Search" class="search-bar" />
+      </div>
+      <div class="navbar-right">
+        <button
+          *ngIf="!(_auth.isAuthenticated$ | async)"
+          (click)="_auth.loginWithPopup()"
+          class="loginBtn"
+        >
+          Login
+        </button>
+        <button
+          *ngIf="_auth.isAuthenticated$ | async"
+          (click)="_auth.logout()"
+          class="loginBtn"
+        >
+          Log out
+        </button>
+      </div>
+    </mat-toolbar>
+    <div class="container">
+      <div class="sidenav-container">
+        <div class="sidenav">
+          <button class="sidebar-button btn1" routerLink="/project">
+            <mat-icon>add</mat-icon>New Project
+          </button>
+          <button class="sidebar-button" routerLink="/allProject">
+            Projects
+          </button>
+          <button class="sidebar-button">Project Managers</button>
+          <button class="sidebar-button">Employees</button>
+          <button class="sidebar-button">Setting</button>
+        </div>
+      </div>
+  
+      <div class="navbar">
+        <div routerLink="/budget" class="nav-item">Project Budget</div>
+       
+        <div routerLink="/audit" class="nav-item">Audit History</div>
+        <div routerLink="/description" class="nav-item">Project Description</div>
+        <div routerLink="/escalation" class="nav-item">Escalation Matrix</div>
+        <div routerLink="/stakeholder" class="nav-item">Stack Holder</div>
+        <div routerLink="/risk" class="nav-item">Risk Profile</div>
+        <div routerLink="/scope" class="nav-item">Scope</div>
+        <div routerLink="/phase" class="nav-item">Phases</div>
+        <div routerLink="/stack" class="nav-item">Project Stack</div>
+  
+        <div routerLink="/sprint" class="nav-item">Sprint-Wise-Detail</div>
+        <div routerLink="/approvedTeam" class="nav-item">Approved Team</div>
+        <div routerLink="/resources" class="nav-item">Resources</div>
+        <div routerLink="/clientFeedback" class="nav-item">Client Feedback</div>
+        <div routerLink="/mom" class="nav-item">MOM</div>
+        <div routerLink="/projectUpdate" class="nav-item">Project Update</div>
+        <div routerLink="/risk" class="nav-item">Risk Profile</div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

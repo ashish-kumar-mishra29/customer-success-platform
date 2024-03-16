@@ -1,7 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { CreateProjectService } from '../../services/create-project.service';
 import { ClientFeedbackService } from '../../services/client-feedback.service';
-import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-client-feedback',
@@ -9,7 +9,7 @@ import jsPDF from 'jspdf';
   styleUrl: './client-feedback.component.css',
 })
 export class ClientFeedbackComponent {
-  @ViewChild('content', { static: false }) content!: ElementRef;
+  
 
   constructor(
     private feedback: ClientFeedbackService,
@@ -32,16 +32,6 @@ export class ClientFeedbackComponent {
     this.project.getProject().subscribe((response: any) => {
       this.availableIds = response.items;
       console.log(this.availableIds);
-    });
-  }
-
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a3');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('AuditHistory.pdf');
-      },
     });
   }
 

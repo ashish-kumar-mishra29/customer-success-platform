@@ -1,6 +1,4 @@
-<button  id="download-btn" (click)="makePdf()">
-  Download
-</button>
+<button id="download-btn" (click)="makePdf()">Download</button>
 
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
@@ -16,13 +14,11 @@
   <div class="form-group">
     <mat-form-field>
       <mat-label>Type:</mat-label>
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="formData.type"
-        name="type"
-        required
-      />
+      <mat-select [(ngModel)]="formData.type" name="type" required>
+        <mat-option value="1">Fixed Budget</mat-option>
+        <mat-option value="2">Man Month</mat-option>
+      </mat-select>
+     
     </mat-form-field>
   </div>
   <div class="form-group">
@@ -90,7 +86,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
-      <td>{{ item.projectId }}</td>
+      <td>{{ item.id }}</td>
       <td>{{ item.type }}</td>
       <td>{{ item.durationInMonths }}</td>
       <td>{{ item.budgetedHours }}</td>

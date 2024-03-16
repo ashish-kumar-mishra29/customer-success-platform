@@ -82,13 +82,21 @@
   <div class="form-group">
     <mat-form-field>
       <mat-label>Status:</mat-label>
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="formData.status"
-        name="status"
-        required
-      />
+      <mat-select [(ngModel)]="formData.status" name="status" required="status">
+        <mat-option value="0">Not Started</mat-option>
+        <mat-option value="1">In Progress</mat-option>
+        <mat-option value="2">Completed</mat-option>
+        <mat-option value="3">On Hold</mat-option>
+        <mat-option value="4">Cancelled</mat-option>
+        <mat-option value="5">Deferred</mat-option>
+        <mat-option value="6">Delayed</mat-option>
+        <mat-option value="7">On Track</mat-option>
+        <mat-option value="8">Sign Off Pending</mat-option>
+        <mat-option value="9">Invoice Pending</mat-option>
+        <mat-option value="10">Payment Pending</mat-option>
+        <mat-option value="11">Payment Received</mat-option>
+        <mat-option value="12">Payment Delayed</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <button type="submit" mat-raised-button color="primary" class="custom-button">

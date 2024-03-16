@@ -8,7 +8,7 @@
 
 .input-field {
   width: 100%;
-  max-width: 400px; /* Limit the width for better readability */
+  max-width: 400px; 
   margin-bottom: 20px;
 }
 
@@ -16,13 +16,11 @@
   width: 100%;
 }
 
-/* Style for Description Textarea */
 textarea.mat-input-element {
-  height: 150px; /* Increase height for better appearance */
+  height: 150px; 
   resize: vertical; /* Allow vertical resizing */
 }
 
-/* CSS for Action Buttons */
 .action-btn {
   width: 200px; /* Set button width */
   margin-bottom: 10px; /* Add margin between button and form fields */
@@ -33,4 +31,3 @@ textarea.mat-input-element {
   color: white; /* Change text color to white */
 }
 
-/* Positioning for Button Container */

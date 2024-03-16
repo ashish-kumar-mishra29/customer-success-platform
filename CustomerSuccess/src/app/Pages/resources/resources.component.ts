@@ -1,7 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CreateProjectService } from '../../services/create-project.service';
 import { ProjectResourcesService } from '../../services/project-resources.service';
-import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-resources',
@@ -9,18 +8,6 @@ import jsPDF from 'jspdf';
   styleUrl: './resources.component.css',
 })
 export class ResourcesComponent {
-  @ViewChild('content', { static: false }) content!: ElementRef;
-
-  makePdf() {
-    const pdf = new jsPDF('p', 'pt', 'a2');
-
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('VersionHistory.pdf');
-      },
-    });
-  }
-
   projects: [] | any;
   constructor(
     private resource: ProjectResourcesService,

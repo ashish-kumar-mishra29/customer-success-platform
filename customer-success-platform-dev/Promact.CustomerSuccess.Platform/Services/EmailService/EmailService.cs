@@ -15,7 +15,7 @@ namespace Promact.CustomerSuccess.Platform.Services.EmailService
         }
         public void SendEmail(EmailDto request)
         {
-            var senderEmail = request.to_email;
+            var senderEmail = request.Contact;
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUsername").Value));
             email.To.Add(MailboxAddress.Parse(senderEmail));

@@ -4,7 +4,7 @@
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>ID:</mat-label>
-      <mat-select [(ngModel)]="formData.id" name="id" required>
+      <mat-select [(ngModel)]="formData.phaseMilestoneId" name="phaseMilestoneId" required>
         <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
           item.id
         }}</mat-option>
@@ -48,13 +48,14 @@
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>Status:</mat-label>
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="formData.status"
-        name="status"
-        required
-      />
+      <mat-select [(ngModel)]="formData.status" required>
+        <mat-option value="1">In Progress</mat-option>
+        <mat-option value="2">Completed</mat-option>
+        <mat-option value="3"> Delayed</mat-option>
+        <mat-option value="4">On Track</mat-option>
+        <mat-option value="5">Sign Off Pending</mat-option>
+      </mat-select>
+
     </mat-form-field>
   </div>
   <div class="form-group">
@@ -86,7 +87,7 @@
       <mat-label>Sprint Number:</mat-label>
       <input
         matInput
-        type="text"
+        type="number"
         [(ngModel)]="formData.sprintNumber"
         name="sprintNumber"
         required
@@ -99,27 +100,25 @@
 <table #content class="table-container">
   <thead>
     <tr>
-      <th>Version</th>
-      <th>Type</th>
-      <th>Change</th>
-      <th>Change Reason</th>
-      <th>Created By</th>
-      <th>Revision Date</th>
-      <th>Approval Date</th>
-      <th>Approved By</th>
+      <th>Phase Milestone Id</th>
+      <th>Start Date</th>
+      <th>End date</th>
+      <th>Status</th>
+      <th>Comments</th>
+      <th>Goals</th>
+      <th>Sprint Number</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of projects; let i = index">
-      <td>{{ item.version }}</td>
-      <td>{{ item.type }}</td>
-      <td>{{ item.change }}</td>
-      <td>{{ item.changeReason }}</td>
-      <td>{{ item.createdBy }}</td>
-      <td>{{ item.revisionDate }}</td>
-      <td>{{ item.approvalDate }}</td>
-      <td>{{ item.approvedBy }}</td>
+      <td>{{ item.phaseMilestoneId }}</td>
+      <td>{{ item.startDate }}</td>
+      <td>{{ item.endDate }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.comments }}</td>
+      <td>{{ item.goals }}</td>
+      <td>{{ item.sprintNumber }}</td>
       <td>
         <button
           mat-raised-button

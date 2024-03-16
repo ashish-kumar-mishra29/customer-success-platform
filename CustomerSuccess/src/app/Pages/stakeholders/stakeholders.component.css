@@ -1,7 +1,7 @@
 /* CSS for Form */
 form {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr); /* Adjust for smaller screens */
   grid-gap: 20px;
 }
 
@@ -63,6 +63,7 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #ddd;
 }
+
 #download-btn {
   background-color: #4caf50;
   color: white;
@@ -74,4 +75,11 @@ tbody tr:hover {
 
 #download-btn:hover {
   background-color: #45a049;
+}
+
+/* Media Query for smaller screen sizes */
+@media only screen and (min-width: 768px) {
+  .form-container {
+    grid-template-columns: repeat(2, 1fr); /* Adjust for larger screens */
+  }
 }

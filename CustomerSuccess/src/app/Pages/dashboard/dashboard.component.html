@@ -38,25 +38,29 @@
       </div>
     </div>
 
-    <div class="navbar">
-      <div routerLink="/budget" class="nav-item">Project Budget</div>
-      <div routerLink="/version" class="nav-item">Version History</div>
-      <div routerLink="/audit" class="nav-item">Audit History</div>
-      <div routerLink="/description" class="nav-item">Project Description</div>
-      <div routerLink="/escalation" class="nav-item">Escalation Matrix</div>
-      <div routerLink="/stakeholder" class="nav-item">Stack Holder</div>
-      <div routerLink="/risk" class="nav-item">Risk Profile</div>
-      <div routerLink="/scope" class="nav-item">Scope</div>
-      <div routerLink="/phase" class="nav-item">Phases</div>
-      <div routerLink="/stack" class="nav-item">Project Stack</div>
-
-      <div routerLink="/sprint" class="nav-item">Sprint-Wise-Detail</div>
-      <div routerLink="/approvedTeam" class="nav-item">Approved Team</div>
-      <div routerLink="/resources" class="nav-item">Resources</div>
-      <div routerLink="/clientFeedback" class="nav-item">Client Feedback</div>
-      <div routerLink="/mom" class="nav-item">MOM</div>
-      <div routerLink="/projectUpdate" class="nav-item">Project Update</div>
-      <div routerLink="/risk" class="nav-item">Risk Profile</div>
+    <div class="navbar" *ngIf="isLoggedIn">
+      <div class="navbar-container">
+        <div #navbarItems class="navbar-items">
+          <div routerLink="/budget" class="nav-item">Project Budget</div>
+          <div routerLink="/version" class="nav-item">Version History</div>
+          <div routerLink="/audit" class="nav-item">Audit History</div>
+          <div routerLink="/description" class="nav-item">Project Description</div>
+          <div routerLink="/escalation" class="nav-item">Escalation Matrix</div>
+          <div routerLink="/stakeholder" class="nav-item">Stack Holder</div>
+          <div routerLink="/risk" class="nav-item">Risk Profile</div>
+          <div routerLink="/scope" class="nav-item">Scope</div>
+          <div routerLink="/phase" class="nav-item">Phases</div>
+          <div routerLink="/stack" class="nav-item">Project Stack</div>
+          <div routerLink="/sprint" class="nav-item">Sprint-Wise-Detail</div>
+          <div routerLink="/approvedTeam" class="nav-item">Approved Team</div>
+          <div routerLink="/resources" class="nav-item">Resources</div>
+          <div routerLink="/clientFeedback" class="nav-item">Client Feedback</div>
+          <div routerLink="/mom" class="nav-item">MOM</div>
+          <div routerLink="/projectUpdate" class="nav-item">Project Update</div>
+        </div>
+      </div>
+     
+      
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -1,0 +1,17 @@
+<div class="navbar-right">
+    <button
+      *ngIf="!(_auth.isAuthenticated$ | async)"
+      (click)="_auth.loginWithPopup()"
+      class="loginBtn"
+    >
+      Login
+    </button>
+    <button
+      *ngIf="_auth.isAuthenticated$ | async"
+      (click)="_auth.logout()"
+      class="loginBtn"
+    >
+      Log out
+    </button>
+  </div>
+  

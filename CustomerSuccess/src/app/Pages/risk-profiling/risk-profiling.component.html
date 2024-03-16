@@ -1,36 +1,55 @@
-<button id="download-btn" (click)="makePdf()" mat-raised-button color="primary">Download</button>
+<button id="download-btn" (click)="makePdf()" mat-raised-button color="primary">
+  Download
+</button>
 
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>ID:</mat-label>
       <mat-select [(ngModel)]="formData.projectId" name="id" required>
-        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{ item.name }}</mat-option>
+        <mat-option *ngFor="let item of availableIds" [value]="item.id">{{
+          item.name
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>Risk Type:</mat-label>
-      <input matInput type="number" [(ngModel)]="formData.riskType" name="riskType" required />
+      <mat-select [(ngModel)]="formData.riskType" name="riskType" required>
+        <mat-option value="1">Financial</mat-option>
+        <mat-option value="2">Operational</mat-option>
+        <mat-option value="3">Technical</mat-option>
+        <mat-option value="4">HR</mat-option>
+        <mat-option value="5">External</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
+
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>Severity:</mat-label>
-      <input matInput type="number" [(ngModel)]="formData.severity" name="severity" required />
+      <mat-select [(ngModel)]="formData.appearance" name="appearance" required>
+        <mat-option value="1">Low</mat-option>
+        <mat-option value="2">Medium</mat-option>
+        <mat-option value="3">High</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field appearance="fill">
       <mat-label>Impact:</mat-label>
-      <input matInput type="number" [(ngModel)]="formData.impact" name="impact" required />
+      <mat-select [(ngModel)]="formData.impact" name="impact" required>
+        <mat-option value="1">Low</mat-option>
+        <mat-option value="2">Medium</mat-option>
+        <mat-option value="3">Hign</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <button type="submit" mat-raised-button color="primary">Submit</button>
 </form>
 
-<table #content class="table-container ">
+<table #content class="table-container">
   <thead>
     <tr>
       <th>Project Id</th>

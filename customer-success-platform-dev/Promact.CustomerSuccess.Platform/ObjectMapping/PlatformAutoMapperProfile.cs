@@ -70,6 +70,10 @@ public class PlatformAutoMapperProfile : Profile
         CreateMap<CreateProjectUpdateDto, ProjectUpdate>();
         CreateMap<UpdateProjectUpdateDto, ProjectUpdate>();
         CreateMap<ProjectUpdate, ProjectUpdateDto>().ReverseMap();
+        //14th Project Update
+        CreateMap<CreateProjectStackDto, ProjectStack>();
+        CreateMap<UpdateProjectStackDto, ProjectStack>();
+        CreateMap<ProjectStack, ProjectStackDto>().ReverseMap();
 
 
 

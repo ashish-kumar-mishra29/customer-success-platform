@@ -13,10 +13,13 @@
         <td>{{ item.description }}</td>
 
         <td>
-          <button (click)="delete(item.id)">
-            <i class="material-icons">delete</i></button
-          ><button>
-            <i class="material-icons">edit</i>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="delete(item.id)"
+            class="action-button"
+          >
+            Delete
           </button>
         </td>
       </tr>

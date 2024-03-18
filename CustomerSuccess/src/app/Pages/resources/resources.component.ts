@@ -62,7 +62,6 @@ export class ResourcesComponent {
   onSubmit() {
     console.log('Form submitted:', this.formData);
     this.resource.createResource(this.formData).subscribe(() => {
-      alert('Project created successfully');
       this.loadProjects(); // Reload projects after successful creation
     });
   }

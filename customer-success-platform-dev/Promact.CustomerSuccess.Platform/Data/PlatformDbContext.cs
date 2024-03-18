@@ -38,6 +38,7 @@ public class PlatformDbContext : AbpDbContext<PlatformDbContext>
     public DbSet<Sprint> Sprints { get; set; }
     public DbSet<ApplicationUser> Users { get; set; }
     public DbSet<ProjectUpdate> ProjectUpdates { get; set; }
+    public DbSet<ProjectStack> ProjectStack { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -131,7 +132,10 @@ public class PlatformDbContext : AbpDbContext<PlatformDbContext>
         {
             ProjectUpdate.ConfigureByConvention();
         });
-
+        builder.Entity<ProjectStack>(ProjectStack =>
+        {
+            ProjectStack.ConfigureByConvention();
+        });
 
     }
 }

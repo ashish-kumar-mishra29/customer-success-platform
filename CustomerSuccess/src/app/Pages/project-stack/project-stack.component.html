@@ -1,1 +1,58 @@
-<p>project-stack works!</p>
+<form (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>ID:</mat-label>
+        <mat-select [(ngModel)]="formData.projectId" name="id" required>
+          <mat-option *ngFor="let item of availableIds" [value]="item.id">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+   
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Technology:</mat-label>
+       <mat-select [(ngModel)]="formData.technology" name="technology" required>
+        <mat-option value="Frontend">Frontend</mat-option>
+        <mat-option value="Backend">Backend</mat-option>
+        <mat-option value="Database">Database</mat-option>
+        <mat-option value="Mobile App">Mobile App</mat-option>
+        <mat-option value="Infrastructure adn services">Infracture and Services</mat-option>
+    </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <button type="submit" mat-raised-button color="primary" class="submit-button">
+      Submit
+    </button>
+  </form>
+  
+  <table #content class="table-container">
+    <thead>
+      <tr>
+        <th>Project Id</th>
+        <th>Technology</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of projects; let i = index">
+        <td>{{ item.id }}</td>
+        <td>{{ item.technology }}</td>
+       
+  
+        <td>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="delete(item.id)"
+            class="action-button"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

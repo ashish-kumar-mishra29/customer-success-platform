@@ -84,8 +84,8 @@ import { LoginDetailsComponent } from './Login/login-details/login-details.compo
     MatSelectModule,
     MatNativeDateModule,
     AuthModule.forRoot({
-      domain: 'dev-bk13bjfn4p40ely1.us.auth0.com',
-      clientId: 'iRG8G2clT427noluh6De7GDkFjqdHrHg',
+      domain: 'dev-mrxmril11iuwjbmk.us.auth0.com',
+      clientId: 'uYZBXtgBwGRUtskKRzrI7va3MAG4GGxF',
       authorizationParams: {
         redirect_uri: window.location.origin,
       },

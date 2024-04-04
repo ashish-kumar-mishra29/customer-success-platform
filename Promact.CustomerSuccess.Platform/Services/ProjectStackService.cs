@@ -5,15 +5,18 @@ using Volo.Abp.Application.Services;
 
 namespace Promact.CustomerSuccess.Platform.Services
 {
-    public class ProjectStackService : CrudAppService<ProjectStack,
+    public class ProjectStackService : 
+        CrudAppService<
+            ProjectStack,
             ProjectStackDto,
             Guid,
             PagedAndSortedResultRequestDto,
             CreateProjectStackDto,
             UpdateProjectStackDto>,
-        IProjectService
+        IProjectStackService
     {
-        public ProjectStackService(Volo.Abp.Domain.Repositories.IRepository<ProjectStack, Guid> repository) : base(repository)
+        public ProjectStackService(Volo.Abp.Domain.Repositories.IRepository<ProjectStack, Guid> repository) 
+            : base(repository)
         {
         }
     }

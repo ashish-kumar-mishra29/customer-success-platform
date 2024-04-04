@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+using Microsoft.AspNetCore.Mvc;
 using Promact.CustomerSuccess.Platform.Services.Dtos;
 using Promact.CustomerSuccess.Platform.Services.EmailService;
 
@@ -22,3 +23,4 @@ namespace Promact.CustomerSuccess.Platform.Controllers
         }
     }
 }
+*/

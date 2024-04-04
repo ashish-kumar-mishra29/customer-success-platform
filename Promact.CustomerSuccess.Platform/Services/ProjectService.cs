@@ -7,7 +7,8 @@ using Volo.Abp.Domain.Repositories;
 namespace Promact.CustomerSuccess.Platform.Services
 {
     public class ProjectService :
-        CrudAppService<Project, 
+        CrudAppService<
+            Project, 
             ProjectDto, 
             Guid, 
             PagedAndSortedResultRequestDto, 

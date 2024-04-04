@@ -6,7 +6,15 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Promact.CustomerSuccess.Platform.Services
 {
-    public class SprintService : CrudAppService<Sprint, SprintDto, Guid, PagedAndSortedResultRequestDto, CreateSprintDto, UpdateSprintDto>
+    public class SprintService : 
+        CrudAppService<
+            Sprint, 
+            SprintDto, 
+            Guid, 
+            PagedAndSortedResultRequestDto, 
+            CreateSprintDto, 
+            UpdateSprintDto>,
+        ISprintService
     {
         public SprintService(IRepository<Sprint, Guid> repository) : base(repository)
         {

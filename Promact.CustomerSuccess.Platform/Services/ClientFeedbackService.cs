@@ -6,14 +6,18 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Promact.CustomerSuccess.Platform.Services
 {
-    public class ClientFeedbackService : CrudAppService<ClientFeedback, 
-        ClientFeedbackDto, 
-        Guid, 
-        PagedAndSortedResultRequestDto, 
-        CreateClientFeedbackDto, 
-        UpdateClientFeedbackDto>, IProjectService
+    public class ClientFeedbackService : 
+        CrudAppService<
+            ClientFeedback, 
+            ClientFeedbackDto, 
+            Guid, 
+            PagedAndSortedResultRequestDto, 
+            CreateClientFeedbackDto, 
+            UpdateClientFeedbackDto>,
+        IClientFeedbackService
     {
-        public ClientFeedbackService(IRepository<ClientFeedback, Guid> repository) : base(repository)
+        public ClientFeedbackService(IRepository<ClientFeedback, Guid> repository) 
+            : base(repository)
         {
         }
     }

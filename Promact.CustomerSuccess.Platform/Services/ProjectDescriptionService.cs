@@ -7,15 +7,17 @@ using Volo.Abp.Domain.Repositories;
 namespace Promact.CustomerSuccess.Platform.Services
 {
     public class ProjectDescriptionService : 
-        CrudAppService<ProjectDescription,
-        ProjectDescriptionDto,
-        Guid,
-        PagedAndSortedResultRequestDto,
-        UpdateProjectDescriptionDto,
-        CreateProjectDescriptionDto>,
-        IProjectService
+        CrudAppService<
+            ProjectDescription,
+            ProjectDescriptionDto,
+            Guid,
+            PagedAndSortedResultRequestDto,
+            UpdateProjectDescriptionDto,
+            CreateProjectDescriptionDto>,
+        IProjectDescriptionService
     {
-        public ProjectDescriptionService(IRepository<ProjectDescription, Guid> repository) : base(repository)
+        public ProjectDescriptionService(IRepository<ProjectDescription, Guid> repository) 
+            : base(repository)
         {
         }
     }

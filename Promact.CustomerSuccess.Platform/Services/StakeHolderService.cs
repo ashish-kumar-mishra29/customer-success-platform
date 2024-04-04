@@ -10,7 +10,15 @@ using Volo.Abp.Domain.Repositories;
 namespace Promact.CustomerSuccess.Platform.Services
 {
 
-    public class StakeHolderService : CrudAppService<StakeHolder, StakeHolderDto, Guid,PagedAndSortedResultRequestDto,CreateStakeHolderDto,UpdateStakeHolderDto>
+    public class StakeHolderService : 
+        CrudAppService<
+            StakeHolder, 
+            StakeHolderDto, 
+            Guid,
+            PagedAndSortedResultRequestDto,
+            CreateStakeHolderDto,
+            UpdateStakeHolderDto>,
+        IStakeHolderService
     {
         private readonly IConfiguration _config;
         private readonly IEmail _emailService;

@@ -1,4 +1,7 @@
-﻿namespace Promact.CustomerSuccess.Platform.Services.Dtos
+﻿using Volo.Abp.Application.Dtos;
+
+
+namespace Promact.CustomerSuccess.Platform.Services.Dtos
 {
     public class CreateApprovedTeamDto
     {

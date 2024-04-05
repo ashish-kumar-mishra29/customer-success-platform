@@ -71,6 +71,11 @@ public class PlatformAutoMapperProfile : Profile
         CreateMap<UpdateProjectUpdateDto, ProjectUpdate>();
         CreateMap<ProjectUpdate, ProjectUpdateDto>().ReverseMap();
 
+        //14th Escalation Matrix
+        CreateMap<CreateEscalationMatrixDto, EscalationMatrix>();
+        CreateMap<UpdateEscalationMatrixDto, EscalationMatrix>();
+        CreateMap<EscalationMatrix, EscalationMatrixDto>();
+
 
 
 

@@ -16,7 +16,8 @@ namespace Promact.CustomerSuccess.Platform.Services
             UpdateVersionHistoryDto>,
         IVersionHistoryService
     {
-        public VersionHistoryService(IRepository<VersionHistory, Guid> repository) : base(repository)
+        public VersionHistoryService(IRepository<VersionHistory, Guid> repository) 
+            : base(repository)
         {
         }
     }
